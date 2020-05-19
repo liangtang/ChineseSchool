@@ -1,0 +1,75 @@
+﻿@model ChineseSchool.Entities.Event
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Event Info</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Event", "Create", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Event", "Edit", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddImage"?"active":"")">@Html.ActionLink("Add Image", "UploadImages", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal col-md-10">
+        <h4>Event</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.EventId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EventName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EventDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EventDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EventDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EventDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EventDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12 panel panel-primary">
+            @foreach (var image in Model.Images)
+            {
+                <div class="col-md-2">
+                    <img src="~/content/eventimages/@image.ThumbNailPath" class="img-responsive" />
+                    <input type="checkbox" name="deleteimage" value="@image.ImageId" />
+                    <span>check for deletion</span>
+                </div>
+            }
+
+        </div>
+      
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

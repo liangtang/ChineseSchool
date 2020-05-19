@@ -1,0 +1,1 @@
+Alter table Semester ADD BookCharge DECIMAL(8,2) NOT NULL CONSTRAINT bookcharge_default DEFAULT 0.00

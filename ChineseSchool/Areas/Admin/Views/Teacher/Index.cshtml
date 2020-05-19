@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ChineseSchool.Entities.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    $(document).ready(function () {
+        $('.deleteteacher').bind('click', function () {
+            if (confirm("Are you sure you want to delete this item?")) {
+                $(this).closest('form').submit();
+            }
+            else {
+                return false;
+            }
+        })
+    })
+
+</script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Photo
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+       
+        <th>
+            Class Assigned
+        </th>
+        <th>Enrichment Class Assigned</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           <a href="../../../content/stuffimages/@item.ImagePath" target="_blank"><img src = "../../../content/stuffimages/@item.ThumbNailPath" /></a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @((item.ClassTeacherAssignments == null || item.ClassTeacherAssignments.Count() ==0)?"Not Assigned":item.ClassTeacherAssignments.First().Class.Classname)
+        </td>
+        <td>
+            @((item.EnrichmentClassTeacherAssignments == null || item.EnrichmentClassTeacherAssignments.Count() == 0) ? "Not Assigned" : item.EnrichmentClassTeacherAssignments.First().EnrichmentClass.ClassName)
+        </td>
+        <td>
+            @using (Html.BeginForm("Delete","Teacher",FormMethod.Post))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id=item.TeacherId }) @:|
+                @Html.ActionLink("Details", "Details", new { id=item.TeacherId }) @:|
+                @Html.ActionLink("Add Photo", "AddPhoto", new { id = item.TeacherId}) @:|
+                <input type="hidden" name="id" value="@item.TeacherId" />
+                <button type="button" class="deleteteacher text-danger">Delete</button>
+            }
+        </td>
+    </tr>
+}
+
+</table>

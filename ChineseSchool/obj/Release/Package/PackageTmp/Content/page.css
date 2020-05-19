@@ -1,0 +1,60 @@
+﻿body
+{
+    background-color: #F8F8F8
+}
+.pagination_div{
+    font-size:small;
+}
+#pagenav {
+    margin-left: 20px;
+}
+
+#pagejumper_span{
+    margin-left: 50px;
+}
+
+#pagenav a{
+    margin-left: 5px;
+    margin-right: 5px;
+   
+}
+
+.pagecurrent{
+    color: red;
+}
+
+.div-vlign-center
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.div-vlign-center-content
+{
+    display: inline-block;
+}
+
+.field-validation-error{
+  color:red;
+   font-weight:bold;
+   background-color:yellow;
+}
+
+.input-validation-error{
+  color:red;
+  font-weight:bold;
+  background-color:pink;
+}
+.error
+{
+  color:red;
+  font-weight:bold;
+  background-color:pink;
+}
+
+.mastbanner
+{
+    height:505px;
+    background-image:url("~/content/img/banner.jpg");
+    background-repeat:no-repeat;
+}

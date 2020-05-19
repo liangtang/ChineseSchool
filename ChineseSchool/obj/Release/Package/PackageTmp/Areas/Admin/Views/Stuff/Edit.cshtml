@@ -1,0 +1,71 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Areas.Admin.Models.StuffViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Edit Stuff</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Stuff", "Create", new { controller = "Stuff", area = "Admin" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Details"?"active":"")">@Html.ActionLink("Stuff Detail", "Details", new { controller = "Stuff", area = "Admin", id = Model.Stuff.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Stuff", "Edit", new { controller = "Stuff", area = "Admin", id = Model.Stuff.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddPhoto"?"active":"")">@Html.ActionLink("Add Photo", "AddPhoto", new { controller = "Stuff", area = "Admin", id = Model.Stuff.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        @*<li class="@(ViewBag.currentTab=="Delete"?"active":"")">@Html.ActionLink("Delete", "Delete", new { controller = "Stuff", area = "Admin", id = Model.Stuff.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>*@
+    </ul>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal col-md-10">
+        <h4>Stuff</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Stuff.StuffId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Stuff.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Stuff.Name)
+                @Html.ValidationMessageFor(model => model.Stuff.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Stuff.PositionId">Position</label>
+            <div class="col-md-10">
+                @Html.PositionSelectList(Model.Positions, Model.Stuff.PositionId, "Stuff.PositionId");
+                @Html.ValidationMessageFor(model => model.Stuff.PositionId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Stuff.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Stuff.Description)
+                @Html.ValidationMessageFor(model => model.Stuff.Description)
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

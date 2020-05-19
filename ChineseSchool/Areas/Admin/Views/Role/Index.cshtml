@@ -1,0 +1,42 @@
+﻿@model System.Collections.Generic.List<ChineseSchool.Models.ApplicationRole>
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    $(document).ready(function () {
+        $('.deleterole').bind('click', function () {
+            if (!confirm("Are you sure you want to delete this role, This CANNOT be undone!")) {
+                return false;
+            }
+            else {
+                $(this).closest('form').submit();
+            }
+            return false;
+        })
+    })
+</script>
+<h2>All Roles</h2>
+<table class="table  table-striped">
+    <tr>
+        <th>Role Name</th>
+        <th></th>
+    </tr>
+    @foreach (var role in Model)
+    {
+        @Html.AntiForgeryToken()
+        <tr>
+            <td>@role.Name</td>
+            <td>
+                @using (Html.BeginForm("Delete", "Role"))
+                {
+                    @Html.Hidden("id", role.Id);
+                    @Html.ActionLink("Edit", "Edit", new { controller = "Role", area = "Admin", id = role.Id }, new { @class = "btn btn-primary btn-xs" });@:|
+                    <button type="submit" class="btn btn-danger btn-xs deleterole">Delete</button>
+
+
+                }
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Create", "Create")

@@ -1,0 +1,177 @@
+.nivo-lightbox-overlay * {
+	box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;
+}
+.nivo-lightbox-overlay {
+	left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; visibility: hidden; position: fixed; z-index: 9999999; box-sizing: border-box; opacity: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.nivo-lightbox-overlay.nivo-lightbox-open {
+	visibility: visible; opacity: 1;
+}
+.nivo-lightbox-wrap {
+	left: 10%; top: 10%; right: 10%; bottom: 10%; position: absolute;
+}
+.nivo-lightbox-content {
+	width: 100%; height: 100%;
+}
+.nivo-lightbox-title-wrap {
+	left: 0px; width: 100%; text-align: center; bottom: 0px; position: absolute; z-index: 99999;
+}
+.nivo-lightbox-nav {
+	display: none;
+}
+.nivo-lightbox-prev {
+	left: 0px; top: 50%; position: absolute;
+}
+.nivo-lightbox-next {
+	top: 50%; right: 0px; position: absolute;
+}
+.nivo-lightbox-close {
+	top: 2%; right: 2%; position: absolute;
+}
+.nivo-lightbox-image {
+	text-align: center;
+}
+.nivo-lightbox-image img {
+	width: auto; height: auto; vertical-align: middle; max-height: 100%; max-width: 100%;
+}
+.nivo-lightbox-content iframe {
+	width: 100%; height: 100%;
+}
+.nivo-lightbox-inline {
+	overflow: auto; max-height: 100%; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.nivo-lightbox-ajax {
+	overflow: auto; max-height: 100%; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.nivo-lightbox-error {
+	width: 100%; height: 100%; text-align: center; color: rgb(255, 255, 255); display: table; text-shadow: 0px 1px 1px #000;
+}
+.nivo-lightbox-error p {
+	vertical-align: middle; display: table-cell;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-fade {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-fadeScale {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-slideLeft {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-slideRight {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-slideUp {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-slideDown {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-notouch .nivo-lightbox-effect-fall {
+	transition:0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out;
+}
+.nivo-lightbox-effect-fadeScale .nivo-lightbox-wrap {
+	transition:0.3s; transform: scale(0.7); -webkit-transform: scale(0.7); -moz-transform: scale(0.7); -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -o-transition: all 0.3s;
+}
+.nivo-lightbox-effect-fadeScale.nivo-lightbox-open .nivo-lightbox-wrap {
+	transform: scale(1); -webkit-transform: scale(1); -moz-transform: scale(1);
+}
+.nivo-lightbox-effect-slideLeft .nivo-lightbox-wrap {
+	transition:0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -o-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+.nivo-lightbox-effect-slideRight .nivo-lightbox-wrap {
+	transition:0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -o-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+.nivo-lightbox-effect-slideUp .nivo-lightbox-wrap {
+	transition:0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -o-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+.nivo-lightbox-effect-slideDown .nivo-lightbox-wrap {
+	transition:0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9); -o-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+.nivo-lightbox-effect-slideLeft .nivo-lightbox-wrap {
+	transform: translateX(-10%); -webkit-transform: translateX(-10%); -moz-transform: translateX(-10%);
+}
+.nivo-lightbox-effect-slideRight .nivo-lightbox-wrap {
+	transform: translateX(10%); -webkit-transform: translateX(10%); -moz-transform: translateX(10%);
+}
+.nivo-lightbox-effect-slideLeft.nivo-lightbox-open .nivo-lightbox-wrap {
+	transform: translateX(0px); -webkit-transform: translateX(0); -moz-transform: translateX(0);
+}
+.nivo-lightbox-effect-slideRight.nivo-lightbox-open .nivo-lightbox-wrap {
+	transform: translateX(0px); -webkit-transform: translateX(0); -moz-transform: translateX(0);
+}
+.nivo-lightbox-effect-slideDown .nivo-lightbox-wrap {
+	transform: translateY(-10%); -webkit-transform: translateY(-10%); -moz-transform: translateY(-10%);
+}
+.nivo-lightbox-effect-slideUp .nivo-lightbox-wrap {
+	transform: translateY(10%); -webkit-transform: translateY(10%); -moz-transform: translateY(10%);
+}
+.nivo-lightbox-effect-slideUp.nivo-lightbox-open .nivo-lightbox-wrap {
+	transform: translateY(0px); -webkit-transform: translateY(0); -moz-transform: translateY(0);
+}
+.nivo-lightbox-effect-slideDown.nivo-lightbox-open .nivo-lightbox-wrap {
+	transform: translateY(0px); -webkit-transform: translateY(0); -moz-transform: translateY(0);
+}
+.nivo-lightbox-body-effect-fall .nivo-lightbox-effect-fall {
+	perspective: 1000px; -webkit-perspective: 1000px; -moz-perspective: 1000px;
+}
+.nivo-lightbox-effect-fall .nivo-lightbox-wrap {
+	transition:0.3s ease-out; transform: translateZ(300px); -webkit-transform: translateZ(300px); -moz-transform: translateZ(300px); -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;
+}
+.nivo-lightbox-effect-fall.nivo-lightbox-open .nivo-lightbox-wrap {
+	transform: translateZ(0px); -webkit-transform: translateZ(0); -moz-transform: translateZ(0);
+}
+.nivo-lightbox-theme-default.nivo-lightbox-overlay {
+	background: rgba(0, 0, 0, 0.6);
+}
+.nivo-lightbox-theme-default .nivo-lightbox-content.nivo-lightbox-loading {
+	background: url("loading.gif") no-repeat 50% 50%;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-nav {
+	background-position: 50% 50%; top: 10%; width: 8%; height: 80%; text-indent: -9999px; opacity: 0.5; background-repeat: no-repeat;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-nav:hover {
+	opacity: 1; background-color: rgba(0, 0, 0, 0.5);
+}
+.nivo-lightbox-theme-default .nivo-lightbox-prev {
+	border-radius: 0px 3px 3px 0px; background-image: url("images/prev.png");
+}
+.nivo-lightbox-theme-default .nivo-lightbox-next {
+	border-radius: 3px 0px 0px 3px; background-image: url("images/next.png");
+}
+.nivo-lightbox-theme-default .nivo-lightbox-close {
+	background: url("images/close.png") no-repeat 5px 5px; padding: 5px; width: 16px; height: 16px; text-indent: -9999px; display: block; opacity: 0.5;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-close:hover {
+	opacity: 1;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-title-wrap {
+	bottom: -7%;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-title {
+	background: rgb(0, 0, 0); font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 7px 15px; border-radius: 30px; color: rgb(255, 255, 255); font-size-adjust: none; font-stretch: normal;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-image img {
+	background: rgb(255, 255, 255); box-shadow: 0px 1px 1px rgba(0,0,0,0.4); -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4); -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+}
+.nivo-lightbox-theme-default .nivo-lightbox-ajax {
+	background: rgb(255, 255, 255); padding: 40px; box-shadow: 0px 1px 1px rgba(0,0,0,0.4); -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4); -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+}
+.nivo-lightbox-theme-default .nivo-lightbox-inline {
+	background: rgb(255, 255, 255); padding: 40px; box-shadow: 0px 1px 1px rgba(0,0,0,0.4); -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4); -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+}
+@media not all, not all, not all, not all, not all
+{
+.nivo-lightbox-theme-default .nivo-lightbox-content.nivo-lightbox-loading {
+	background-image: url("images/loading@2x.gif"); background-size: 32px 32px;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-prev {
+	background-image: url("images/prev@2x.png"); background-size: 48px 48px;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-next {
+	background-image: url("images/next@2x.png"); background-size: 48px 48px;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-close {
+	background-image: url("images/close@2x.png"); background-size: 16px 16px;
+}
+}

@@ -1,0 +1,2055 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChineseSchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Classname" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ClassDescription" Type="nvarchar" MaxLength="512" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="target" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Content" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Ability" Type="nvarchar" MaxLength="512" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="ClassRegistration">
+          <Key>
+            <PropertyRef Name="ClassRegistrationId" />
+          </Key>
+          <Property Name="ClassRegistrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassTeacherAssignment">
+          <Key>
+            <PropertyRef Name="ClassTeacherAssignmentId" />
+          </Key>
+          <Property Name="ClassTeacherAssignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="datetime" Nullable="false" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnrichmentClass">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Price1" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Price1Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="Price2" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Price2Descrioption" Type="nvarchar" MaxLength="512" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnrichmentClassRegistration">
+          <Key>
+            <PropertyRef Name="EnrichmentClassRegistrationId" />
+          </Key>
+          <Property Name="EnrichmentClassRegistrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+          <Property Name="EnrichmentClassId" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnrichmentClassTeacherAssignment">
+          <Key>
+            <PropertyRef Name="EnrichmentClassTeacherAssignmentId" />
+          </Key>
+          <Property Name="EnrichmentClassTeacherAssignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnrichmentClassId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="datetime" Nullable="false" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="EventDescription" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatedUser" Type="nvarchar" MaxLength="512" />
+          <Property Name="CreateTimeStamp" Type="datetime" />
+          <Property Name="UpdateUser" Type="nvarchar" MaxLength="512" />
+          <Property Name="UpdateTimeStamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CreatedUser" Type="nvarchar" MaxLength="512" />
+          <Property Name="CreateTimeStamp" Type="datetime" />
+          <Property Name="UpdateUser" Type="nvarchar" MaxLength="512" />
+          <Property Name="UpdateTimeStamp" Type="datetime" />
+          <Property Name="ThumbNailPath" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="InvoiceDate" Type="date" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="SemesterId" Type="int" Nullable="false" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+          </Key>
+          <Property Name="ParentsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Parent1LastName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Parent2Firstname" Type="nvarchar" MaxLength="128" />
+          <Property Name="Parent2Lastname" Type="nvarchar" MaxLength="128" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="256" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="256" />
+          <Property Name="City" Type="nvarchar" MaxLength="128" />
+          <Property Name="State" Type="nvarchar" MaxLength="32" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="32" />
+          <Property Name="PrimaryPhone" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="SecondaryPhone" Type="nvarchar" MaxLength="32" />
+          <Property Name="PrimaryEmail" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SecondaryEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionTypeId" Type="int" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsExclusive" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PositionType">
+          <Key>
+            <PropertyRef Name="PositionTypeId" />
+          </Key>
+          <Property Name="PositionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionTypeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="datetime" Nullable="false" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemesterYear" Type="int" Nullable="false" />
+          <Property Name="SemesterSeason" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="RegisterStartDate" Type="date" Nullable="false" />
+          <Property Name="RegisterEndDate" Type="date" Nullable="false" />
+          <Property Name="Price1" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Price1Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="Price2" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Price2Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="Price3" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Price3Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="Price4" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Price4Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="Price5" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Price5Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RegistrationFeeBeforeEndDate" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="RegistrationFeeAfterEndDate" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="VolunteerDeposit" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="BookCharge" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentsId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MiddleInitial" Type="nvarchar" MaxLength="1" />
+          <Property Name="Chinesename" Type="nvarchar" MaxLength="128" />
+          <Property Name="Gender" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Grade" Type="tinyint" />
+          <Property Name="Class" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RegisterClass" Type="bit" Nullable="false" />
+          <Property Name="EnrichmentClass" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stuff">
+          <Key>
+            <PropertyRef Name="StuffId" />
+          </Key>
+          <Property Name="StuffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ThumbNailPath" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="datetime" Nullable="false" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="512" />
+          <Property Name="upsrt_dttm" Type="datetime" Nullable="false" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="ThumbNailPath" Type="nvarchar" MaxLength="512" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ParentsId" Type="int" Nullable="false" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TransactionDate" Type="date" Nullable="false" />
+          <Property Name="TransactionDescription" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="TransactionAmount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdateTimeStemp" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SemesterID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="VideoId" />
+          </Key>
+          <Property Name="VideoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="VideoLink" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="datetime" />
+          <Property Name="upsrt_user" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A411B9_ChineseSchool.dbo.v_CurrentRegistrationDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_CurrentRegistrationDetails">
+          <Key>
+            <PropertyRef Name="StudentName" />
+            <PropertyRef Name="ParentName" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="StudentName" Type="nvarchar" MaxLength="257" Nullable="false" />
+          <Property Name="ParentName" Type="nvarchar" MaxLength="257" Nullable="false" />
+          <Property Name="Birthday" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Classname" Type="nvarchar" MaxLength="8" />
+          <Property Name="EnrichmentClassname" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A411B9_ChineseSchool.dbo.v_StudentClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_StudentClass">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+            <PropertyRef Name="Parent1Firstname" />
+            <PropertyRef Name="Parent1LastName" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+          </Key>
+          <Property Name="ParentsId" Type="int" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Parent1LastName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Classname" Type="nvarchar" MaxLength="8" />
+          <Property Name="classId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A411B9_ChineseSchool.dbo.v_StudentClassDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_StudentClassDetails">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+            <PropertyRef Name="Parent1Firstname" />
+            <PropertyRef Name="Parent1LastName" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+            <PropertyRef Name="Amount" />
+          </Key>
+          <Property Name="ParentsId" Type="int" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Parent1LastName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Classname" Type="nvarchar" MaxLength="8" />
+          <Property Name="Amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A411B9_ChineseSchool.dbo.v_StudentEnrichmentClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_StudentEnrichmentClass">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+            <PropertyRef Name="Parent1Firstname" />
+            <PropertyRef Name="Parent1LastName" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+          </Key>
+          <Property Name="ParentsId" Type="int" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Parent1LastName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Classname" Type="nvarchar" MaxLength="64" />
+          <Property Name="classId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A411B9_ChineseSchool.dbo.v_TeacherAssignment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_TeacherAssignment">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="8" />
+          <Property Name="EnrichmentClassId" Type="int" />
+          <Property Name="EnrichmentClassName" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A411B9_ChineseSchool.dbo.v_TeacherClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_TeacherClass">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK__ClassTeac__Class__5BAD9CC8">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="ClassTeacherAssignment" Type="Self.ClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="ClassTeacherAssignment">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassTeac__Semes__5D95E53A">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="ClassTeacherAssignment" Type="Self.ClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="ClassTeacherAssignment">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassTeac__Teach__5CA1C101">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="ClassTeacherAssignment" Type="Self.ClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="ClassTeacherAssignment">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrichmen__Enric__6EC0713C">
+          <End Role="EnrichmentClass" Type="Self.EnrichmentClass" Multiplicity="1" />
+          <End Role="EnrichmentClassTeacherAssignment" Type="Self.EnrichmentClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnrichmentClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassTeacherAssignment">
+              <PropertyRef Name="EnrichmentClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrichmen__Semes__6FB49575">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="EnrichmentClassTeacherAssignment" Type="Self.EnrichmentClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassTeacherAssignment">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrichmen__Teach__70A8B9AE">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="EnrichmentClassTeacherAssignment" Type="Self.EnrichmentClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="EnrichmentClassTeacherAssignment">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Image__EventId__5224328E">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Position__Positi__662B2B3B">
+          <End Role="PositionType" Type="Self.PositionType" Multiplicity="1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionType">
+              <PropertyRef Name="PositionTypeId" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="PositionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stuff__PositionI__6AEFE058">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Stuff">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Video__EventId__76619304">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassRegistration_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="ClassRegistration" Type="Self.ClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="ClassRegistration">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EnrichmentClassRegistration_EnrichmentClass">
+          <End Role="EnrichmentClass" Type="Self.EnrichmentClass" Multiplicity="0..1" />
+          <End Role="EnrichmentClassRegistration" Type="Self.EnrichmentClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnrichmentClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassRegistration">
+              <PropertyRef Name="EnrichmentClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Parent">
+          <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentsId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Semester">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SemesterId_Class">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="ClassRegistration" Type="Self.ClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="ClassRegistration">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SemesterId_ErichmentClass">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="EnrichmentClassRegistration" Type="Self.EnrichmentClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassRegistration">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_ParentsID">
+          <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentsId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ParentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentId_Class">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="ClassRegistration" Type="Self.ClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="ClassRegistration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentId_ErichmentClass">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="EnrichmentClassRegistration" Type="Self.EnrichmentClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="EnrichmentClassRegistration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ParentsID">
+          <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentsId" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="ParentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Semester">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="RegisterStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="IfRegister" Type="bit" Mode="In" />
+          <Parameter Name="classId" Type="int" Mode="In" />
+          <Parameter Name="EnrichmentClassId" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+          <Parameter Name="RegistrationDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_AddEnrichment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="EnrichmentClassId" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_deleteparent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="parentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_RemoveEnrichment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_updateinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ParentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_DeleteEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eventId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ChineseSchoolModelStoreContainer">
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassRegistration" EntityType="Self.ClassRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassTeacherAssignment" EntityType="Self.ClassTeacherAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnrichmentClass" EntityType="Self.EnrichmentClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnrichmentClassRegistration" EntityType="Self.EnrichmentClassRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnrichmentClassTeacherAssignment" EntityType="Self.EnrichmentClassTeacherAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PositionType" EntityType="Self.PositionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stuff" EntityType="Self.Stuff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_CurrentRegistrationDetails" EntityType="Self.v_CurrentRegistrationDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_CurrentRegistrationDetails].[StudentName] AS [StudentName], 
+    [v_CurrentRegistrationDetails].[ParentName] AS [ParentName], 
+    [v_CurrentRegistrationDetails].[Birthday] AS [Birthday], 
+    [v_CurrentRegistrationDetails].[Phone] AS [Phone], 
+    [v_CurrentRegistrationDetails].[Email] AS [Email], 
+    [v_CurrentRegistrationDetails].[Classname] AS [Classname], 
+    [v_CurrentRegistrationDetails].[EnrichmentClassname] AS [EnrichmentClassname]
+    FROM [dbo].[v_CurrentRegistrationDetails] AS [v_CurrentRegistrationDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_StudentClass" EntityType="Self.v_StudentClass" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_StudentClass].[ParentsId] AS [ParentsId], 
+    [v_StudentClass].[Parent1Firstname] AS [Parent1Firstname], 
+    [v_StudentClass].[Parent1LastName] AS [Parent1LastName], 
+    [v_StudentClass].[StudentId] AS [StudentId], 
+    [v_StudentClass].[Firstname] AS [Firstname], 
+    [v_StudentClass].[Lastname] AS [Lastname], 
+    [v_StudentClass].[Classname] AS [Classname], 
+    [v_StudentClass].[classId] AS [classId]
+    FROM [dbo].[v_StudentClass] AS [v_StudentClass]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_StudentClassDetails" EntityType="Self.v_StudentClassDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_StudentClassDetails].[ParentsId] AS [ParentsId], 
+    [v_StudentClassDetails].[Parent1Firstname] AS [Parent1Firstname], 
+    [v_StudentClassDetails].[Parent1LastName] AS [Parent1LastName], 
+    [v_StudentClassDetails].[StudentId] AS [StudentId], 
+    [v_StudentClassDetails].[Firstname] AS [Firstname], 
+    [v_StudentClassDetails].[Lastname] AS [Lastname], 
+    [v_StudentClassDetails].[Classname] AS [Classname], 
+    [v_StudentClassDetails].[Amount] AS [Amount]
+    FROM [dbo].[v_StudentClassDetails] AS [v_StudentClassDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_StudentEnrichmentClass" EntityType="Self.v_StudentEnrichmentClass" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_StudentEnrichmentClass].[ParentsId] AS [ParentsId], 
+    [v_StudentEnrichmentClass].[Parent1Firstname] AS [Parent1Firstname], 
+    [v_StudentEnrichmentClass].[Parent1LastName] AS [Parent1LastName], 
+    [v_StudentEnrichmentClass].[StudentId] AS [StudentId], 
+    [v_StudentEnrichmentClass].[Firstname] AS [Firstname], 
+    [v_StudentEnrichmentClass].[Lastname] AS [Lastname], 
+    [v_StudentEnrichmentClass].[Classname] AS [Classname], 
+    [v_StudentEnrichmentClass].[classId] AS [classId]
+    FROM [dbo].[v_StudentEnrichmentClass] AS [v_StudentEnrichmentClass]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_TeacherAssignment" EntityType="Self.v_TeacherAssignment" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_TeacherAssignment].[TeacherId] AS [TeacherId], 
+    [v_TeacherAssignment].[Name] AS [Name], 
+    [v_TeacherAssignment].[ClassId] AS [ClassId], 
+    [v_TeacherAssignment].[ClassName] AS [ClassName], 
+    [v_TeacherAssignment].[EnrichmentClassId] AS [EnrichmentClassId], 
+    [v_TeacherAssignment].[EnrichmentClassName] AS [EnrichmentClassName]
+    FROM [dbo].[v_TeacherAssignment] AS [v_TeacherAssignment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_TeacherClass" EntityType="Self.v_TeacherClass" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_TeacherClass].[TeacherId] AS [TeacherId], 
+    [v_TeacherClass].[Name] AS [Name], 
+    [v_TeacherClass].[ClassId] AS [ClassId], 
+    [v_TeacherClass].[ClassName] AS [ClassName]
+    FROM [dbo].[v_TeacherClass] AS [v_TeacherClass]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ClassTeac__Class__5BAD9CC8" Association="Self.FK__ClassTeac__Class__5BAD9CC8">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="ClassTeacherAssignment" EntitySet="ClassTeacherAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassTeac__Semes__5D95E53A" Association="Self.FK__ClassTeac__Semes__5D95E53A">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="ClassTeacherAssignment" EntitySet="ClassTeacherAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassTeac__Teach__5CA1C101" Association="Self.FK__ClassTeac__Teach__5CA1C101">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="ClassTeacherAssignment" EntitySet="ClassTeacherAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrichmen__Enric__6EC0713C" Association="Self.FK__Enrichmen__Enric__6EC0713C">
+            <End Role="EnrichmentClass" EntitySet="EnrichmentClass" />
+            <End Role="EnrichmentClassTeacherAssignment" EntitySet="EnrichmentClassTeacherAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrichmen__Semes__6FB49575" Association="Self.FK__Enrichmen__Semes__6FB49575">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="EnrichmentClassTeacherAssignment" EntitySet="EnrichmentClassTeacherAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrichmen__Teach__70A8B9AE" Association="Self.FK__Enrichmen__Teach__70A8B9AE">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="EnrichmentClassTeacherAssignment" EntitySet="EnrichmentClassTeacherAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Image__EventId__5224328E" Association="Self.FK__Image__EventId__5224328E">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Position__Positi__662B2B3B" Association="Self.FK__Position__Positi__662B2B3B">
+            <End Role="PositionType" EntitySet="PositionType" />
+            <End Role="Position" EntitySet="Position" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stuff__PositionI__6AEFE058" Association="Self.FK__Stuff__PositionI__6AEFE058">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Stuff" EntitySet="Stuff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Video__EventId__76619304" Association="Self.FK__Video__EventId__76619304">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassRegistration_Class" Association="Self.FK_ClassRegistration_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="ClassRegistration" EntitySet="ClassRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EnrichmentClassRegistration_EnrichmentClass" Association="Self.FK_EnrichmentClassRegistration_EnrichmentClass">
+            <End Role="EnrichmentClass" EntitySet="EnrichmentClass" />
+            <End Role="EnrichmentClassRegistration" EntitySet="EnrichmentClassRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Parent" Association="Self.FK_Invoice_Parent">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Semester" Association="Self.FK_Invoice_Semester">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SemesterId_Class" Association="Self.FK_SemesterId_Class">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="ClassRegistration" EntitySet="ClassRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SemesterId_ErichmentClass" Association="Self.FK_SemesterId_ErichmentClass">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="EnrichmentClassRegistration" EntitySet="EnrichmentClassRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_ParentsID" Association="Self.FK_Student_ParentsID">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentId_Class" Association="Self.FK_StudentId_Class">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ClassRegistration" EntitySet="ClassRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentId_ErichmentClass" Association="Self.FK_StudentId_ErichmentClass">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="EnrichmentClassRegistration" EntitySet="EnrichmentClassRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ParentsID" Association="Self.FK_Transaction_ParentsID">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Semester" Association="Self.FK_Transactions_Semester">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChineseSchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ChineseSchoolEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="RegisterStudent">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="IfRegister" Mode="In" Type="Boolean" />
+            <Parameter Name="classId" Mode="In" Type="Int32" />
+            <Parameter Name="EnrichmentClassId" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="RegistrationDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_updateinvoice">
+          <Parameter Name="ParentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deleteparent">
+          <Parameter Name="parentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DeleteEvent">
+          <Parameter Name="eventId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Classes" EntityType="ChineseSchoolModel.Class" />
+          <EntitySet Name="ClassRegistrations" EntityType="ChineseSchoolModel.ClassRegistration" />
+          <EntitySet Name="ClassTeacherAssignments" EntityType="ChineseSchoolModel.ClassTeacherAssignment" />
+          <EntitySet Name="EnrichmentClasses" EntityType="ChineseSchoolModel.EnrichmentClass" />
+          <EntitySet Name="EnrichmentClassRegistrations" EntityType="ChineseSchoolModel.EnrichmentClassRegistration" />
+          <EntitySet Name="Events" EntityType="ChineseSchoolModel.Event" />
+          <EntitySet Name="Images" EntityType="ChineseSchoolModel.Image" />
+          <EntitySet Name="Invoices" EntityType="ChineseSchoolModel.Invoice" />
+          <EntitySet Name="Parents" EntityType="ChineseSchoolModel.Parent" />
+          <EntitySet Name="Semesters" EntityType="ChineseSchoolModel.Semester" />
+          <EntitySet Name="Students" EntityType="ChineseSchoolModel.Student" />
+          <EntitySet Name="Teachers" EntityType="ChineseSchoolModel.Teacher" />
+          <EntitySet Name="Transactions" EntityType="ChineseSchoolModel.Transaction" />
+          <EntitySet Name="v_StudentClass" EntityType="ChineseSchoolModel.v_StudentClass" />
+          <EntitySet Name="v_StudentClassDetails" EntityType="ChineseSchoolModel.v_StudentClassDetails" />
+          <EntitySet Name="v_StudentEnrichmentClass" EntityType="ChineseSchoolModel.v_StudentEnrichmentClass" />
+          <AssociationSet Name="FK__ClassTeac__Class__5BAD9CC8" Association="ChineseSchoolModel.FK__ClassTeac__Class__5BAD9CC8">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="ClassTeacherAssignment" EntitySet="ClassTeacherAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassRegistration_Class" Association="ChineseSchoolModel.FK_ClassRegistration_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="ClassRegistration" EntitySet="ClassRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SemesterId_Class" Association="ChineseSchoolModel.FK_SemesterId_Class">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="ClassRegistration" EntitySet="ClassRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentId_Class" Association="ChineseSchoolModel.FK_StudentId_Class">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="ClassRegistration" EntitySet="ClassRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassTeac__Semes__5D95E53A" Association="ChineseSchoolModel.FK__ClassTeac__Semes__5D95E53A">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="ClassTeacherAssignment" EntitySet="ClassTeacherAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassTeac__Teach__5CA1C101" Association="ChineseSchoolModel.FK__ClassTeac__Teach__5CA1C101">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="ClassTeacherAssignment" EntitySet="ClassTeacherAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EnrichmentClassRegistration_EnrichmentClass" Association="ChineseSchoolModel.FK_EnrichmentClassRegistration_EnrichmentClass">
+            <End Role="EnrichmentClass" EntitySet="EnrichmentClasses" />
+            <End Role="EnrichmentClassRegistration" EntitySet="EnrichmentClassRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SemesterId_ErichmentClass" Association="ChineseSchoolModel.FK_SemesterId_ErichmentClass">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="EnrichmentClassRegistration" EntitySet="EnrichmentClassRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentId_ErichmentClass" Association="ChineseSchoolModel.FK_StudentId_ErichmentClass">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="EnrichmentClassRegistration" EntitySet="EnrichmentClassRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Image__EventId__5224328E" Association="ChineseSchoolModel.FK__Image__EventId__5224328E">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Parent" Association="ChineseSchoolModel.FK_Invoice_Parent">
+            <End Role="Parent" EntitySet="Parents" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Semester" Association="ChineseSchoolModel.FK_Invoice_Semester">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_ParentsID" Association="ChineseSchoolModel.FK_Student_ParentsID">
+            <End Role="Parent" EntitySet="Parents" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ParentsID" Association="ChineseSchoolModel.FK_Transaction_ParentsID">
+            <End Role="Parent" EntitySet="Parents" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Semester" Association="ChineseSchoolModel.FK_Transactions_Semester">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <EntitySet Name="v_TeacherClass" EntityType="ChineseSchoolModel.v_TeacherClass" />
+          <EntitySet Name="Positions" EntityType="ChineseSchoolModel.Position" />
+          <EntitySet Name="PositionTypes" EntityType="ChineseSchoolModel.PositionType" />
+          <EntitySet Name="Stuffs" EntityType="ChineseSchoolModel.Stuff" />
+          <AssociationSet Name="FK__Position__Positi__662B2B3B" Association="ChineseSchoolModel.FK__Position__Positi__662B2B3B">
+            <End Role="PositionType" EntitySet="PositionTypes" />
+            <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stuff__PositionI__6AEFE058" Association="ChineseSchoolModel.FK__Stuff__PositionI__6AEFE058">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Stuff" EntitySet="Stuffs" />
+          </AssociationSet>
+          <EntitySet Name="EnrichmentClassTeacherAssignments" EntityType="ChineseSchoolModel.EnrichmentClassTeacherAssignment" />
+          <EntitySet Name="v_TeacherAssignment" EntityType="ChineseSchoolModel.v_TeacherAssignment" />
+          <AssociationSet Name="FK__Enrichmen__Enric__6EC0713C" Association="ChineseSchoolModel.FK__Enrichmen__Enric__6EC0713C">
+            <End Role="EnrichmentClass" EntitySet="EnrichmentClasses" />
+            <End Role="EnrichmentClassTeacherAssignment" EntitySet="EnrichmentClassTeacherAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrichmen__Semes__6FB49575" Association="ChineseSchoolModel.FK__Enrichmen__Semes__6FB49575">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="EnrichmentClassTeacherAssignment" EntitySet="EnrichmentClassTeacherAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrichmen__Teach__70A8B9AE" Association="ChineseSchoolModel.FK__Enrichmen__Teach__70A8B9AE">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="EnrichmentClassTeacherAssignment" EntitySet="EnrichmentClassTeacherAssignments" />
+          </AssociationSet>
+          <EntitySet Name="Videos" EntityType="ChineseSchoolModel.Video" />
+          <AssociationSet Name="FK__Video__EventId__76619304" Association="ChineseSchoolModel.FK__Video__EventId__76619304">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
+          <EntitySet Name="v_CurrentRegistrationDetails" EntityType="ChineseSchoolModel.v_CurrentRegistrationDetails" />
+          <FunctionImport Name="sp_AddEnrichment">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="EnrichmentClassId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RemoveEnrichment">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Classname" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ClassDescription" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="target" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Ability" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClassTeacherAssignments" Relationship="ChineseSchoolModel.FK__ClassTeac__Class__5BAD9CC8" FromRole="Class" ToRole="ClassTeacherAssignment" />
+          <NavigationProperty Name="ClassRegistrations" Relationship="ChineseSchoolModel.FK_ClassRegistration_Class" FromRole="Class" ToRole="ClassRegistration" />
+        </EntityType>
+        <EntityType Name="ClassRegistration">
+          <Key>
+            <PropertyRef Name="ClassRegistrationId" />
+          </Key>
+          <Property Name="ClassRegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Class" Relationship="ChineseSchoolModel.FK_ClassRegistration_Class" FromRole="ClassRegistration" ToRole="Class" />
+          <NavigationProperty Name="Semester" Relationship="ChineseSchoolModel.FK_SemesterId_Class" FromRole="ClassRegistration" ToRole="Semester" />
+          <NavigationProperty Name="Student" Relationship="ChineseSchoolModel.FK_StudentId_Class" FromRole="ClassRegistration" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="ClassTeacherAssignment">
+          <Key>
+            <PropertyRef Name="ClassTeacherAssignmentId" />
+          </Key>
+          <Property Name="ClassTeacherAssignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upsrt_user" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Class" Relationship="ChineseSchoolModel.FK__ClassTeac__Class__5BAD9CC8" FromRole="ClassTeacherAssignment" ToRole="Class" />
+          <NavigationProperty Name="Semester" Relationship="ChineseSchoolModel.FK__ClassTeac__Semes__5D95E53A" FromRole="ClassTeacherAssignment" ToRole="Semester" />
+          <NavigationProperty Name="Teacher" Relationship="ChineseSchoolModel.FK__ClassTeac__Teach__5CA1C101" FromRole="ClassTeacherAssignment" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="EnrichmentClass">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Price1" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Price1Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Price2" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Price2Descrioption" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EnrichmentClassRegistrations" Relationship="ChineseSchoolModel.FK_EnrichmentClassRegistration_EnrichmentClass" FromRole="EnrichmentClass" ToRole="EnrichmentClassRegistration" />
+          <NavigationProperty Name="EnrichmentClassTeacherAssignments" Relationship="ChineseSchoolModel.FK__Enrichmen__Enric__6EC0713C" FromRole="EnrichmentClass" ToRole="EnrichmentClassTeacherAssignment" />
+        </EntityType>
+        <EntityType Name="EnrichmentClassRegistration">
+          <Key>
+            <PropertyRef Name="EnrichmentClassRegistrationId" />
+          </Key>
+          <Property Name="EnrichmentClassRegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <Property Name="EnrichmentClassId" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EnrichmentClass" Relationship="ChineseSchoolModel.FK_EnrichmentClassRegistration_EnrichmentClass" FromRole="EnrichmentClassRegistration" ToRole="EnrichmentClass" />
+          <NavigationProperty Name="Semester" Relationship="ChineseSchoolModel.FK_SemesterId_ErichmentClass" FromRole="EnrichmentClassRegistration" ToRole="Semester" />
+          <NavigationProperty Name="Student" Relationship="ChineseSchoolModel.FK_StudentId_ErichmentClass" FromRole="EnrichmentClassRegistration" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EventDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedUser" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStamp" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Images" Relationship="ChineseSchoolModel.FK__Image__EventId__5224328E" FromRole="Event" ToRole="Image" />
+          <NavigationProperty Name="Videos" Relationship="ChineseSchoolModel.FK__Video__EventId__76619304" FromRole="Event" ToRole="Video" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUser" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="ThumbNailPath" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Event" Relationship="ChineseSchoolModel.FK__Image__EventId__5224328E" FromRole="Image" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Parent" Relationship="ChineseSchoolModel.FK_Invoice_Parent" FromRole="Invoice" ToRole="Parent" />
+          <NavigationProperty Name="Semester" Relationship="ChineseSchoolModel.FK_Invoice_Semester" FromRole="Invoice" ToRole="Semester" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+          </Key>
+          <Property Name="ParentsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent1Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent1LastName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent2Firstname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent2Lastname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryPhone" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryPhone" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryEmail" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoices" Relationship="ChineseSchoolModel.FK_Invoice_Parent" FromRole="Parent" ToRole="Invoice" />
+          <NavigationProperty Name="Students" Relationship="ChineseSchoolModel.FK_Student_ParentsID" FromRole="Parent" ToRole="Student" />
+          <NavigationProperty Name="Transactions" Relationship="ChineseSchoolModel.FK_Transaction_ParentsID" FromRole="Parent" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemesterYear" Type="Int32" Nullable="false" />
+          <Property Name="SemesterSeason" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="RegisterStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RegisterEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Price1" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Price1Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Price2" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Price2Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Price3" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Price3Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Price4" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Price4Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Price5" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Price5Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationFeeBeforeEndDate" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="RegistrationFeeAfterEndDate" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="VolunteerDeposit" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <NavigationProperty Name="ClassRegistrations" Relationship="ChineseSchoolModel.FK_SemesterId_Class" FromRole="Semester" ToRole="ClassRegistration" />
+          <NavigationProperty Name="ClassTeacherAssignments" Relationship="ChineseSchoolModel.FK__ClassTeac__Semes__5D95E53A" FromRole="Semester" ToRole="ClassTeacherAssignment" />
+          <NavigationProperty Name="EnrichmentClassRegistrations" Relationship="ChineseSchoolModel.FK_SemesterId_ErichmentClass" FromRole="Semester" ToRole="EnrichmentClassRegistration" />
+          <NavigationProperty Name="Invoices" Relationship="ChineseSchoolModel.FK_Invoice_Semester" FromRole="Semester" ToRole="Invoice" />
+          <NavigationProperty Name="Transactions" Relationship="ChineseSchoolModel.FK_Transactions_Semester" FromRole="Semester" ToRole="Transaction" />
+          <NavigationProperty Name="EnrichmentClassTeacherAssignments" Relationship="ChineseSchoolModel.FK__Enrichmen__Semes__6FB49575" FromRole="Semester" ToRole="EnrichmentClassTeacherAssignment" />
+          <Property Name="BookCharge" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentsId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleInitial" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Chinesename" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Grade" Type="Byte" />
+          <Property Name="Class" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RegisterClass" Type="Boolean" Nullable="false" />
+          <Property Name="EnrichmentClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ClassRegistrations" Relationship="ChineseSchoolModel.FK_StudentId_Class" FromRole="Student" ToRole="ClassRegistration" />
+          <NavigationProperty Name="EnrichmentClassRegistrations" Relationship="ChineseSchoolModel.FK_StudentId_ErichmentClass" FromRole="Student" ToRole="EnrichmentClassRegistration" />
+          <NavigationProperty Name="Parent" Relationship="ChineseSchoolModel.FK_Student_ParentsID" FromRole="Student" ToRole="Parent" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="upsrt_dttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upsrt_user" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbNailPath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ClassTeacherAssignments" Relationship="ChineseSchoolModel.FK__ClassTeac__Teach__5CA1C101" FromRole="Teacher" ToRole="ClassTeacherAssignment" />
+          <NavigationProperty Name="EnrichmentClassTeacherAssignments" Relationship="ChineseSchoolModel.FK__Enrichmen__Teach__70A8B9AE" FromRole="Teacher" ToRole="EnrichmentClassTeacherAssignment" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ParentsId" Type="Int32" Nullable="false" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TransactionDescription" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionAmount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTimeStemp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SemesterID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parent" Relationship="ChineseSchoolModel.FK_Transaction_ParentsID" FromRole="Transaction" ToRole="Parent" />
+          <NavigationProperty Name="Semester" Relationship="ChineseSchoolModel.FK_Transactions_Semester" FromRole="Transaction" ToRole="Semester" />
+        </EntityType>
+        <EntityType Name="v_StudentClass">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+            <PropertyRef Name="Parent1Firstname" />
+            <PropertyRef Name="Parent1LastName" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+          </Key>
+          <Property Name="ParentsId" Type="Int32" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent1LastName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Classname" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="classId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_StudentClassDetails">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+            <PropertyRef Name="Parent1Firstname" />
+            <PropertyRef Name="Parent1LastName" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+            <PropertyRef Name="Amount" />
+          </Key>
+          <Property Name="ParentsId" Type="Int32" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent1LastName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Classname" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="v_StudentEnrichmentClass">
+          <Key>
+            <PropertyRef Name="ParentsId" />
+            <PropertyRef Name="Parent1Firstname" />
+            <PropertyRef Name="Parent1LastName" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Lastname" />
+          </Key>
+          <Property Name="ParentsId" Type="Int32" Nullable="false" />
+          <Property Name="Parent1Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parent1LastName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Classname" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="classId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__ClassTeac__Class__5BAD9CC8">
+          <End Type="ChineseSchoolModel.Class" Role="Class" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.ClassTeacherAssignment" Role="ClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="ClassTeacherAssignment">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassRegistration_Class">
+          <End Type="ChineseSchoolModel.Class" Role="Class" Multiplicity="0..1" />
+          <End Type="ChineseSchoolModel.ClassRegistration" Role="ClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="ClassRegistration">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SemesterId_Class">
+          <End Type="ChineseSchoolModel.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.ClassRegistration" Role="ClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="ClassRegistration">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentId_Class">
+          <End Type="ChineseSchoolModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.ClassRegistration" Role="ClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="ClassRegistration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassTeac__Semes__5D95E53A">
+          <End Type="ChineseSchoolModel.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.ClassTeacherAssignment" Role="ClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="ClassTeacherAssignment">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassTeac__Teach__5CA1C101">
+          <End Type="ChineseSchoolModel.Teacher" Role="Teacher" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.ClassTeacherAssignment" Role="ClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="ClassTeacherAssignment">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EnrichmentClassRegistration_EnrichmentClass">
+          <End Type="ChineseSchoolModel.EnrichmentClass" Role="EnrichmentClass" Multiplicity="0..1" />
+          <End Type="ChineseSchoolModel.EnrichmentClassRegistration" Role="EnrichmentClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnrichmentClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassRegistration">
+              <PropertyRef Name="EnrichmentClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SemesterId_ErichmentClass">
+          <End Type="ChineseSchoolModel.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.EnrichmentClassRegistration" Role="EnrichmentClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassRegistration">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentId_ErichmentClass">
+          <End Type="ChineseSchoolModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.EnrichmentClassRegistration" Role="EnrichmentClassRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="EnrichmentClassRegistration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Image__EventId__5224328E">
+          <End Type="ChineseSchoolModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Image" Role="Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Parent">
+          <End Type="ChineseSchoolModel.Parent" Role="Parent" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentsId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Semester">
+          <End Type="ChineseSchoolModel.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_ParentsID">
+          <End Type="ChineseSchoolModel.Parent" Role="Parent" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentsId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ParentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ParentsID">
+          <End Type="ChineseSchoolModel.Parent" Role="Parent" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentsId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ParentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Semester">
+          <End Type="ChineseSchoolModel.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_TeacherClass">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="ClassName" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsExclusive" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="upsrt_user" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="upsrt_dttm" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PositionType" Relationship="ChineseSchoolModel.FK__Position__Positi__662B2B3B" FromRole="Position" ToRole="PositionType" />
+          <NavigationProperty Name="Stuffs" Relationship="ChineseSchoolModel.FK__Stuff__PositionI__6AEFE058" FromRole="Position" ToRole="Stuff" />
+        </EntityType>
+        <EntityType Name="PositionType">
+          <Key>
+            <PropertyRef Name="PositionTypeId" />
+          </Key>
+          <Property Name="PositionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionTypeName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="upsrt_dttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upsrt_user" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Positions" Relationship="ChineseSchoolModel.FK__Position__Positi__662B2B3B" FromRole="PositionType" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="Stuff">
+          <Key>
+            <PropertyRef Name="StuffId" />
+          </Key>
+          <Property Name="StuffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbNailPath" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upsrt_user" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Position" Relationship="ChineseSchoolModel.FK__Stuff__PositionI__6AEFE058" FromRole="Stuff" ToRole="Position" />
+        </EntityType>
+        <Association Name="FK__Position__Positi__662B2B3B">
+          <End Type="ChineseSchoolModel.PositionType" Role="PositionType" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Position" Role="Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionType">
+              <PropertyRef Name="PositionTypeId" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="PositionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stuff__PositionI__6AEFE058">
+          <End Type="ChineseSchoolModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Stuff" Role="Stuff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Stuff">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EnrichmentClassTeacherAssignment">
+          <Key>
+            <PropertyRef Name="EnrichmentClassTeacherAssignmentId" />
+          </Key>
+          <Property Name="EnrichmentClassTeacherAssignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnrichmentClassId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="SemesterId" Type="Int32" Nullable="false" />
+          <Property Name="upsrt_dttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upsrt_user" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EnrichmentClass" Relationship="ChineseSchoolModel.FK__Enrichmen__Enric__6EC0713C" FromRole="EnrichmentClassTeacherAssignment" ToRole="EnrichmentClass" />
+          <NavigationProperty Name="Semester" Relationship="ChineseSchoolModel.FK__Enrichmen__Semes__6FB49575" FromRole="EnrichmentClassTeacherAssignment" ToRole="Semester" />
+          <NavigationProperty Name="Teacher" Relationship="ChineseSchoolModel.FK__Enrichmen__Teach__70A8B9AE" FromRole="EnrichmentClassTeacherAssignment" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="v_TeacherAssignment">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="ClassName" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="EnrichmentClassId" Type="Int32" />
+          <Property Name="EnrichmentClassName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Enrichmen__Enric__6EC0713C">
+          <End Type="ChineseSchoolModel.EnrichmentClass" Role="EnrichmentClass" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.EnrichmentClassTeacherAssignment" Role="EnrichmentClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnrichmentClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassTeacherAssignment">
+              <PropertyRef Name="EnrichmentClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrichmen__Semes__6FB49575">
+          <End Type="ChineseSchoolModel.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.EnrichmentClassTeacherAssignment" Role="EnrichmentClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="EnrichmentClassTeacherAssignment">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrichmen__Teach__70A8B9AE">
+          <End Type="ChineseSchoolModel.Teacher" Role="Teacher" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.EnrichmentClassTeacherAssignment" Role="EnrichmentClassTeacherAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="EnrichmentClassTeacherAssignment">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="VideoId" />
+          </Key>
+          <Property Name="VideoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="VideoLink" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="upsrt_dttm" Type="DateTime" Precision="3" />
+          <Property Name="upsrt_user" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Event" Relationship="ChineseSchoolModel.FK__Video__EventId__76619304" FromRole="Video" ToRole="Event" />
+        </EntityType>
+        <Association Name="FK__Video__EventId__76619304">
+          <End Type="ChineseSchoolModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="ChineseSchoolModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_CurrentRegistrationDetails">
+          <Key>
+            <PropertyRef Name="StudentName" />
+            <PropertyRef Name="ParentName" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="StudentName" Type="String" Nullable="false" MaxLength="257" FixedLength="false" Unicode="true" />
+          <Property Name="ParentName" Type="String" Nullable="false" MaxLength="257" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Classname" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="EnrichmentClassname" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChineseSchoolModelStoreContainer" CdmEntityContainer="ChineseSchoolEntities">
+          <FunctionImportMapping FunctionImportName="RegisterStudent" FunctionName="ChineseSchoolModel.Store.RegisterStudent" />
+          <FunctionImportMapping FunctionImportName="sp_updateinvoice" FunctionName="ChineseSchoolModel.Store.sp_updateinvoice" />
+          <FunctionImportMapping FunctionImportName="sp_deleteparent" FunctionName="ChineseSchoolModel.Store.sp_deleteparent" />
+          <FunctionImportMapping FunctionImportName="usp_DeleteEvent" FunctionName="ChineseSchoolModel.Store.usp_DeleteEvent" />
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="Ability" ColumnName="Ability" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="target" ColumnName="target" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ClassDescription" ColumnName="ClassDescription" />
+                <ScalarProperty Name="Classname" ColumnName="Classname" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassRegistrations">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.ClassRegistration">
+              <MappingFragment StoreEntitySet="ClassRegistration">
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ClassRegistrationId" ColumnName="ClassRegistrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassTeacherAssignments">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.ClassTeacherAssignment">
+              <MappingFragment StoreEntitySet="ClassTeacherAssignment">
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ClassTeacherAssignmentId" ColumnName="ClassTeacherAssignmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnrichmentClasses">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.EnrichmentClass">
+              <MappingFragment StoreEntitySet="EnrichmentClass">
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="Price2Descrioption" ColumnName="Price2Descrioption" />
+                <ScalarProperty Name="Price2" ColumnName="Price2" />
+                <ScalarProperty Name="Price1Description" ColumnName="Price1Description" />
+                <ScalarProperty Name="Price1" ColumnName="Price1" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnrichmentClassRegistrations">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.EnrichmentClassRegistration">
+              <MappingFragment StoreEntitySet="EnrichmentClassRegistration">
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="EnrichmentClassId" ColumnName="EnrichmentClassId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="EnrichmentClassRegistrationId" ColumnName="EnrichmentClassRegistrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="UpdateTimeStamp" ColumnName="UpdateTimeStamp" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTimeStamp" ColumnName="CreateTimeStamp" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ThumbNailPath" ColumnName="ThumbNailPath" />
+                <ScalarProperty Name="UpdateTimeStamp" ColumnName="UpdateTimeStamp" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTimeStamp" ColumnName="CreateTimeStamp" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parents">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Parent">
+              <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+                <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Parent2Lastname" ColumnName="Parent2Lastname" />
+                <ScalarProperty Name="Parent2Firstname" ColumnName="Parent2Firstname" />
+                <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+                <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="BookCharge" ColumnName="BookCharge" />
+                <ScalarProperty Name="VolunteerDeposit" ColumnName="VolunteerDeposit" />
+                <ScalarProperty Name="RegistrationFeeAfterEndDate" ColumnName="RegistrationFeeAfterEndDate" />
+                <ScalarProperty Name="RegistrationFeeBeforeEndDate" ColumnName="RegistrationFeeBeforeEndDate" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="Price5Description" ColumnName="Price5Description" />
+                <ScalarProperty Name="Price5" ColumnName="Price5" />
+                <ScalarProperty Name="Price4Description" ColumnName="Price4Description" />
+                <ScalarProperty Name="Price4" ColumnName="Price4" />
+                <ScalarProperty Name="Price3Description" ColumnName="Price3Description" />
+                <ScalarProperty Name="Price3" ColumnName="Price3" />
+                <ScalarProperty Name="Price2Description" ColumnName="Price2Description" />
+                <ScalarProperty Name="Price2" ColumnName="Price2" />
+                <ScalarProperty Name="Price1Description" ColumnName="Price1Description" />
+                <ScalarProperty Name="Price1" ColumnName="Price1" />
+                <ScalarProperty Name="RegisterEndDate" ColumnName="RegisterEndDate" />
+                <ScalarProperty Name="RegisterStartDate" ColumnName="RegisterStartDate" />
+                <ScalarProperty Name="SemesterSeason" ColumnName="SemesterSeason" />
+                <ScalarProperty Name="SemesterYear" ColumnName="SemesterYear" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="EnrichmentClass" ColumnName="EnrichmentClass" />
+                <ScalarProperty Name="RegisterClass" ColumnName="RegisterClass" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Chinesename" ColumnName="Chinesename" />
+                <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ThumbNailPath" ColumnName="ThumbNailPath" />
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionDescription" ColumnName="TransactionDescription" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_StudentClass">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.v_StudentClass">
+              <MappingFragment StoreEntitySet="v_StudentClass">
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="Classname" ColumnName="Classname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+                <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_StudentClassDetails">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.v_StudentClassDetails">
+              <MappingFragment StoreEntitySet="v_StudentClassDetails">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Classname" ColumnName="Classname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+                <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_StudentEnrichmentClass">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.v_StudentEnrichmentClass">
+              <MappingFragment StoreEntitySet="v_StudentEnrichmentClass">
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="Classname" ColumnName="Classname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+                <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+                <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_TeacherClass">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.v_TeacherClass">
+              <MappingFragment StoreEntitySet="v_TeacherClass">
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsExclusive" ColumnName="IsExclusive" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionTypeId" ColumnName="PositionTypeId" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionTypes">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.PositionType">
+              <MappingFragment StoreEntitySet="PositionType">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="PositionTypeName" ColumnName="PositionTypeName" />
+                <ScalarProperty Name="PositionTypeId" ColumnName="PositionTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stuffs">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Stuff">
+              <MappingFragment StoreEntitySet="Stuff">
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ThumbNailPath" ColumnName="ThumbNailPath" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StuffId" ColumnName="StuffId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnrichmentClassTeacherAssignments">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.EnrichmentClassTeacherAssignment">
+              <MappingFragment StoreEntitySet="EnrichmentClassTeacherAssignment">
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="EnrichmentClassId" ColumnName="EnrichmentClassId" />
+                <ScalarProperty Name="EnrichmentClassTeacherAssignmentId" ColumnName="EnrichmentClassTeacherAssignmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_TeacherAssignment">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.v_TeacherAssignment">
+              <MappingFragment StoreEntitySet="v_TeacherAssignment">
+                <ScalarProperty Name="EnrichmentClassName" ColumnName="EnrichmentClassName" />
+                <ScalarProperty Name="EnrichmentClassId" ColumnName="EnrichmentClassId" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+                <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_CurrentRegistrationDetails">
+            <EntityTypeMapping TypeName="ChineseSchoolModel.v_CurrentRegistrationDetails">
+              <MappingFragment StoreEntitySet="v_CurrentRegistrationDetails">
+                <ScalarProperty Name="EnrichmentClassname" ColumnName="EnrichmentClassname" />
+                <ScalarProperty Name="Classname" ColumnName="Classname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AddEnrichment" FunctionName="ChineseSchoolModel.Store.sp_AddEnrichment" />
+          <FunctionImportMapping FunctionImportName="sp_RemoveEnrichment" FunctionName="ChineseSchoolModel.Store.sp_RemoveEnrichment" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

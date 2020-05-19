@@ -1,0 +1,60 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Areas.Admin.Models.AssignClassViewModel
+@{
+    ViewBag.Title = "Assign Class";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Action("StudentNavBar", new { controller = "Student", area = "Admin", studentId = Model.Student.StudentId, currentTab = "AssignClass" })
+<div class="col-md-offset-1 col-md-9 panel panel-primary">
+    <br />
+
+    <div class="panel-heading">Assign Class </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Chinese Name</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+
+               
+            </tr>
+
+            <tr>
+                <td>@(Model.Student.Firstname + " " + Model.Student.Lastname)</td>
+                <td>@Model.Student.Chinesename</td>
+                <td>@Model.Student.Gender</td>
+                <td>@Model.Student.Birthday</td>
+               
+            </tr>
+
+
+        </table>
+        
+@using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true)
+        <input type="hidden" name="studentId" value="@Model.Student.StudentId" />
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Class">Class to Assign</label>
+            <div class="col-md-10">
+                @Html.ClassSelectList(Model.Classes,Model.AssignedClassId)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+</div>
+    </div>
+

@@ -1,0 +1,16 @@
+﻿@model ChineseSchool.Entities.Parent
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Parents Info</div>
+    <ul class="nav nav-pills nav-stacked ">
+        <li class="@(ViewBag.currentTab=="Details"? "active":"")">@Html.ActionLink("Details", "Details", new { controller = "Parents", area = "Admin",parentId = Model.ParentsId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Parents", "Edit", new { controller = "Parents", area = "Admin",parentId = Model.ParentsId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab == "PayInvoice" ? "active" : "")">@Html.ActionLink("Pay Invoice", "PayInvoice", new { controller = "Parents", area = "Admin", parentId = Model.ParentsId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Transaction"?"active":"")">@Html.ActionLink("Post Transaction", "Transaction", new { controller = "Parents", area = "Admin", parentId = Model.ParentsId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        @*<li class="@(ViewBag.currentTab=="Transaction"?"active":"")" >@Html.ActionLink("Apply BookCharge", "Details", new { controller = "Parents", area = "Admin", parentId = Model.ParentsId }, new {disabled = "disabled", @class = "icon-chevron-right nav-stacked-font" ,id = "ApplyBookCharge"})</li>*@
+        <li id="ApplyBookCharge" class="@(ViewBag.currentTab=="Transaction"?"active":"")"><a href="">Apply BookCharge</a></li>
+        <li class="@(ViewBag.currentTab=="Register"?"active":"")">@Html.ActionLink("Registration", "ExistingRegistration", new { controller = "AdminRegister", area = "Admin", email = Model.PrimaryEmail }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        
+    </ul>
+</div>
+

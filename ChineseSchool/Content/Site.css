@@ -1,0 +1,261 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size:100%;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.required input:after 
+{
+    content: "*";
+    font-weight: bold;
+    color: red; 
+}
+
+.container {
+    /*width: 1920px;*/
+     background-image:url("image/bg.png") ;
+    background-repeat: repeat;
+}
+
+p {
+    text-align:justify;
+}
+
+/*css copied from aquilapharmatech*/
+
+body, td, th, input, select, textarea, button {
+	/*font:11px/1.5 tahoma, arial, 宋体, sans-serif;*/
+    
+	color:#979a9a;
+}
+body {
+    width:1920px;
+	background:#FFFFFF ; 
+    background-image:url("image/bg.png") ;
+    background-repeat: repeat;
+    color: #808080;
+	margin:0;
+    
+}
+.bodydiv {
+    width: 1920px;
+    background-color:#FFFFFF;
+}
+.invoicediv{
+   width: 960px;
+    background-color:#FFFFFF;
+}
+img {
+	border:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	empty-cells:show;
+	text-align:left;
+}
+th, td {
+	border-collapse:collapse;
+	padding:0;
+}
+/*a {
+	color:#363636;
+	text-decoration:none;
+}*/
+a:hover {
+	color:#c00;
+	text-decoration:none;
+}
+a, button {
+	behavior:url(htc/select.htc);
+}
+button {
+	border:0;
+	cursor:pointer;
+}
+hr {
+	height:1px;
+}
+ul, li {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.top {
+	background:url(../images/topbg.jpg) repeat-x;
+	height:250px;
+}
+
+
+.ds span {
+    display: block;
+}
+.navbar-custom {
+    background-color:#EFFBFB;
+    color:#85929e;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#85929e;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.nav-stacked-font{
+
+    color: #808080;
+}
+.navbar .nav  li  a {
+  color: #85929e;
+  font-family: 'Oswald', sans-serif;
+  /*font-size: 2em;*/
+  text-transform: uppercase;
+}
+
+.navbar .nav > li > a {
+ /*line-height: 100px;*/
+}
+
+.dropdown-menu 
+    line-height:30px;
+}
+
+.address-div{
+    padding:30px;
+}
+
+dt {
+       text-align:left;
+}
+
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px 6px;
+    border-radius:0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display:block;
+}
+.dropdown-submenu>a:after {
+    display:block;
+    content:" ";
+    float:right;
+    width:0;
+    height:0;
+    border-color:transparent;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    border-left-color:#cccccc;
+    margin-top:5px;
+    margin-right:-10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color:#ffffff;
+}
+.dropdown-submenu.pull-left {
+    float:none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left:-100%;
+    margin-left:10px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
+}
+
+.panel {
+    border: 0;
+}
+
+
+
+.image {
+    margin-right:10px;
+    margin-left:0px;
+    margin-bottom:10px;
+}
+
+#logo {
+    margin-right: 100px;
+    height:30%;
+    width:30%;
+}
+
+ul {
+    list-style-type: disc !important;
+    padding-left:1em !important;
+    margin-left:1em !important;
+}
+
+.enrichment_pic{
+    height:30%;
+    width:30%;
+}
+
+.crop {
+    height: 300px;
+    width :300px;
+    overflow: hidden;
+}
+
+.crop img {
+    height: auto;
+    width: 100%;
+}
+
+#turoial
+{
+    font-size:150%;
+}

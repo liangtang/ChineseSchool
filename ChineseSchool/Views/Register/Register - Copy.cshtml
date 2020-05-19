@@ -1,0 +1,287 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Models.RegisterClassViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+<script>
+
+    function serialize() {
+        var allRows = $('#students tr');
+        for (var i = 2; i <= allRows.length; i++) {
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(1) input').attr('name', 'Students[' + (i - 2) + '].FirstName');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(2) input').attr('name', 'Students[' + (i - 2) + '].Lastname');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(3) input').attr('name', 'Students[' + (i - 2) + '].ChineseName');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(4) input').attr('name', 'Students[' + (i - 2) + '].Birthday');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(5) select').attr('name', 'Students[' + (i - 2) + '].Gender');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(6) select').attr('name', 'Students[' + (i - 2) + '].IfRegister');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(7) select').attr('name', 'Students[' + (i - 2) + '].Class');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(8) select').attr('name', 'Students[' + (i - 2) + '].EnrichmentClass');
+        };
+    }
+    function deleteButtonBinding() {
+        $('.deletestudent').bind('click', function () {
+            var itemCount = $('#students tr').length - 1;
+            if (itemCount > 1) {
+                $(this).closest('tr').remove();
+                serialize();
+            }
+        })
+    }
+    function createNewItem() {
+        var td1 = $('<td>').append($('<input>', { type: 'text', name: "FirstName",placeholder:"required" }));
+        var td2 = $('<td>').append($('<input>', { type: 'text', name: "LastName", placeholder: "required" }));
+        var td3 = $('<td>').append($('<input>', { type: 'text', name: "ChineseName", placeholder: "optional" }));
+        var td4 = $('<td>').append($('<input>', { type: 'text', name: "BirthDate",value:"2006-01-01",class:"datepicker"}));
+        var td5 = $('<td>');
+        td5.html ('<select name="gender"><option value="M">Male</option><option value="F">Female</option></select>');
+        var td6 = $('<td>');
+        td6.html('<select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>');
+        var td7 = $('<td>');
+        td7.html('@Html.ClassSelectList(Model.Classes)');
+        var td8 = $('<td>');
+        td8.html('@Html.EnrichmentClassSelectList(Model.EnrichmentClasses)');
+
+        var deleteButton = $('<button>', { type: 'button', 'class': 'btn btn-danger btn-xs deletestudent' }).html('Delete');
+        var td9 = $('<td>').append(deleteButton);
+        return $('<tr>').append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8).append(td9);
+    }
+
+    function cleanForm() {
+        var items = $('#students tr');
+        var itemsToBeDelete = [];
+        for (var i = 2; i <= items.length; i++) {
+            var value1 = $('#students tr:nth-of-type(' + i + ') td:nth-of-type(1) input').val();
+            //var value2 = $('#invoiceitems tr:nth-of-type(' + i + ') td:nth-of-type(2) input').val();
+            if (!value1) {
+                itemsToBeDelete[itemsToBeDelete.length] = $('#students tr:nth-of-type(' + i + ')');
+            }
+        }
+
+        for (var index = 0; index < itemsToBeDelete.length; index++) {
+            itemsToBeDelete[index].remove();
+        }
+    }
+
+    function submitForm() {
+        cleanForm();
+        serialize();
+        $(this).closest('form').submit();
+    }
+
+
+    $(document).ready(function () {
+        deleteButtonBinding();
+        serialize();
+        $('#addstudent').click(function () {
+            $('#students tr').last().after(createNewItem());
+            deleteButtonBinding();
+            serialize();
+            $(".datepicker").datepicker({
+
+                dateFormat: "yy-mm-dd",
+
+                changeMonth: true,
+                changeYear: true
+
+            });//.val();
+        });
+
+        $('#submitform').click(submitForm);
+        //$('[name="newOrder.OrderDate"]').addClass("datepicker");
+        $(".datepicker").datepicker({
+           
+            dateFormat: "yy-mm-dd",
+           
+            changeMonth: true,
+            changeYear: true
+
+        });//.val();
+    })
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>RegisterClassViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent1Firstname, new { @class = "control-label col-md-2 required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parent1Firstname, new { htmlAttributes = new { placeholder = "required" } })
+                @Html.ValidationMessageFor(model => model.Parent1Firstname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent1LastName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parent1LastName, new { htmlAttributes = new { placeholder = "required" } })
+                @Html.ValidationMessageFor(model => model.Parent1LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent2Firstname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parent2Firstname)
+                @Html.ValidationMessageFor(model => model.Parent2Firstname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent2Lastname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parent2Lastname)
+                @Html.ValidationMessageFor(model => model.Parent2Lastname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressLine1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddressLine1)
+                @Html.ValidationMessageFor(model => model.AddressLine1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressLine2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddressLine2)
+                @Html.ValidationMessageFor(model => model.AddressLine2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZipCode)
+                @Html.ValidationMessageFor(model => model.ZipCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrimaryPhone, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrimaryPhone, new { htmlAttributes = new { placeholder = "required" } })
+                @Html.ValidationMessageFor(model => model.PrimaryPhone)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecondaryPhone, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SecondaryPhone)
+                @Html.ValidationMessageFor(model => model.SecondaryPhone)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrimaryEmail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrimaryEmail)
+                @Html.ValidationMessageFor(model => model.PrimaryEmail)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecondaryEmail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SecondaryEmail)
+                @Html.ValidationMessageFor(model => model.SecondaryEmail)
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h3>Students</h3>
+        </div>
+        @Html.ValidationMessage("Students")
+        <div>
+            <table class="table-responsive" id="students">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Chinese Name</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    
+                    <th>Check to Register Class</th>
+                    <th>Grade</th>
+                    <th>Erichment Class</th>
+                </tr>
+               @if (Model.Students == null || Model.Students.Count == 0)
+                {
+                    <tr>
+                        <td>@Html.TextBox("FirstName", null,new { @placeholder = "required" })</td>
+                        <td>@Html.TextBox("LastName",null, new { @placeholder = "required" })</td>
+                        <td>@Html.TextBox("ChineseName",null, new { @placeholder = "optional" })</td>
+                        <td>@Html.TextBox("BirthDate", "2006-01-01", new { @class = "datepicker" })</td>
+                        <td><select name="gender">
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </td>
+                        
+                        <td><select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select></td>
+                        <td>@Html.ClassSelectList(Model.Classes)</td>
+                        <td>@Html.EnrichmentClassSelectList(Model.EnrichmentClasses)</td>
+                        <td><button type="button" class="btn btn-danger btn-xs deletestudent">Delete</button>  </td>
+                    </tr>
+                }
+               else
+               {
+                   foreach (var student in Model.Students)
+                   {
+                       <tr>
+                        <td>@Html.TextBox("FirstName", student.Firstname, new { @placeholder = "required" })</td>
+                        <td>@Html.TextBox("LastName", student.Lastname, new { @placeholder = "required" })</td>
+                        <td>@Html.TextBox("ChineseName",student.Chinesename)</td>
+                        <td>@Html.TextBox("BirthDate", student.Birthday)</td>
+                        <td>@Html.GenderSelectList(student.Gender)</td>                        
+                        <td><select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select></td>
+                        <td>@Html.ClassSelectList(Model.Classes)</td>
+                        <td>@Html.EnrichmentClassSelectList(Model.EnrichmentClasses)</td>
+                        <td><button type="button" class="btn btn-danger btn-xs deletestudent">Delete</button>  </td>
+                    </tr>
+                   }
+               }
+            </table>
+            <div class="col-md-offset-4 col-md-8">
+                <button type="button" id="addstudent">Add Student</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="submitform" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,36 @@
+﻿@model ChineseSchool.Entities.Stuff
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Edit Stuff</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Stuff", "Create", new { controller = "Stuff", area = "Admin" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Details"?"active":"")">@Html.ActionLink("Stuff Detail", "Details", new { controller = "Stuff", area = "Admin", id = Model.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Stuff", "Edit", new { controller = "Stuff", area = "Admin", id = Model.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddPhoto"?"active":"")">@Html.ActionLink("Add Photo", "AddPhoto", new { controller = "Stuff", area = "Admin", id = Model.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Delete"?"active":"")">@Html.ActionLink("Delete", "Delete", new { controller = "Stuff", area = "Admin", id = Model.StuffId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+    </ul>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h2>Are you sure to remove this staff?</h2>
+    <div class="col-md-offset-2 col-md-4">
+        @Html.Hidden("studentId",Model.StuffId)
+        <input type="submit" name="Submit" value="Remove" class="btn btn-danger" />
+    </div>
+    <div class=" col-md-4">
+        @Html.ActionLink("Cancel", "Details", new { controller = "Stuff", area = "Admin", stuffId = Model.StuffId }, new {@class="btn btn-primary" })
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

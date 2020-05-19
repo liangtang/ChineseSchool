@@ -1,0 +1,14 @@
+﻿<div class="col-md-2 panel-default">
+    <div class="panel-heading">My Account</div>
+    <ul class="nav nav-pills nav-stacked ">
+        <li class="@(ViewBag.currentTab=="DashBoard"? "active":"")">@Html.ActionLink("DashBoard", "Index", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+      
+        <li class="@(ViewBag.currentTab=="EditProfile"?"active":"")">@Html.ActionLink("Edit Profile", "EditProfile", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="ChangePassword"?"active":"")">@Html.ActionLink("Change Password", "ChangePassword", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="ParentInfo"?"active":"")">@Html.ActionLink("Edit Parents", "ParentsInfo", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddStudents"?"active":"")">@Html.ActionLink("Add Children", "AddStudents", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Invoice"?"active":"")">@Html.ActionLink("Invoice", "Invoice", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        @*<li class="@(ViewBag.currentTab=="Payment"?"active":"")">@Html.ActionLink("Make Payment", "Payment", new { controller = "MyAccount", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>*@
+        <li>@Html.ActionLink("Register", "Register", new { controller = "Register", area = "" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+    </ul>
+</div>

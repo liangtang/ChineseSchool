@@ -1,0 +1,100 @@
+﻿@model ChineseSchool.Entities.Teacher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#DeleteTeacher').bind('click', function () {
+            if (confirm("Are you sure you want to delete this teacher?")) {
+                $(this).closest('form').submit();
+            }
+            else {
+                return false;
+            }
+        })
+    })
+
+</script>
+
+<h2>Details</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Teach Details</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Teacher", "Create", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Teacher", "Edit", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddPhoto"?"active":"")">@Html.ActionLink("Add Photo", "AddPhoto", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AssignClass"?"active":"")">@Html.ActionLink("Assign Class", "AssignClass", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+
+<div class="col-md-10 panel-default" >
+
+    <div  >
+        @if (!String.IsNullOrEmpty(Model.ThumbNailPath))
+        {
+            <a href="~/Content/stuffimages/@Model.ImagePath"><img src="../../../Content/stuffimages/@Model.ThumbNailPath" /></a>
+        }
+    </div>
+    <br />
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Comment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
+
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
+
+            <dd>
+                @(Model.IsActive ? "Yes" : "No")
+            </dd>
+
+            <dt>
+                Class Assigned
+            </dt>
+
+            <dd>
+                @((Model.ClassTeacherAssignments == null || Model.ClassTeacherAssignments.Count()==0)? "Not Assigned":Model.ClassTeacherAssignments.First().Class.Classname)
+            </dd>
+
+            <dt>
+                Enrichment Class Assigned
+            </dt>
+
+            <dd>
+                @((Model.EnrichmentClassTeacherAssignments == null || Model.EnrichmentClassTeacherAssignments.Count() == 0) ? "Not Assigned" : Model.EnrichmentClassTeacherAssignments.First().EnrichmentClass.ClassName)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<div>
+    @using (Html.BeginForm("Delete", "Teacher", FormMethod.Post))
+    {
+        <input type="hidden" name="id" value="@Model.TeacherId" />
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TeacherId }) @:|
+        @Html.ActionLink("Back to List", "Index") @:|
+        <button class="btn-danger" type="button" id="DeleteTeacher">Delete</button>
+    }
+</div>

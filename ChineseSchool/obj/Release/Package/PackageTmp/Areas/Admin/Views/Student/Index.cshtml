@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ChineseSchool.Areas.Admin.Models.StudentListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Students</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleInitial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chinesename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleInitial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chinesename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthday)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { studentId=item.StudentId }) |
+            @Html.ActionLink("Details", "Details", new { studentId=item.StudentId }) |
+            @Html.ActionLink("Assign Class", "AssignClass", new { studentId=item.StudentId })
+        </td>
+    </tr>
+}
+
+</table>

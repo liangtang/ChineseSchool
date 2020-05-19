@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d8935c329ac1442b8e34e625acf63bb2" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="ChineseSchoolModel.Class" Width="1.5" PointX="3.75" PointY="19.75" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.ClassRegistration" Width="1.5" PointX="3" PointY="15" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.ClassTeacherAssignment" Width="1.5" PointX="6" PointY="6.5" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.EnrichmentClass" Width="1.5" PointX="3.75" PointY="24.375" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.EnrichmentClassRegistration" Width="1.5" PointX="6" PointY="10" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Event" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Image" Width="1.5" PointX="8" PointY="1.125" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Invoice" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Parent" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Semester" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Student" Width="1.5" PointX="3.75" PointY="28.5" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Teacher" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Transaction" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.v_StudentClass" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.v_StudentClassDetails" Width="2.125" PointX="8.875" PointY="8.75" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.v_StudentEnrichmentClass" Width="3.375" PointX="13.75" PointY="1.375" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__ClassTeac__Class__5BAD9CC8" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_ClassRegistration_Class" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_SemesterId_Class" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_StudentId_Class" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__ClassTeac__Semes__5D95E53A" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__ClassTeac__Teach__5CA1C101" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_EnrichmentClassRegistration_EnrichmentClass" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_SemesterId_ErichmentClass" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_StudentId_ErichmentClass" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Image__EventId__5224328E" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_Invoice_Parent" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_Invoice_Semester" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_Student_ParentsID" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_Transaction_ParentsID" />
+        <AssociationConnector Association="ChineseSchoolModel.FK_Transactions_Semester" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.v_TeacherClass" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Position" Width="1.5" PointX="13.625" PointY="8.25" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.PositionType" Width="1.5" PointX="11.375" PointY="8.375" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Stuff" Width="1.5" PointX="15.875" PointY="8" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Position__Positi__662B2B3B" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Stuff__PositionI__6AEFE058" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.EnrichmentClassTeacherAssignment" Width="1.5" PointX="6" PointY="15.25" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.v_TeacherAssignment" Width="1.5" PointX="11.375" PointY="11.75" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Enrichmen__Enric__6EC0713C" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Enrichmen__Semes__6FB49575" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Enrichmen__Teach__70A8B9AE" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.Video" Width="1.5" PointX="8" PointY="19.5" />
+        <AssociationConnector Association="ChineseSchoolModel.FK__Video__EventId__76619304" />
+        <EntityTypeShape EntityType="ChineseSchoolModel.v_CurrentRegistrationDetails" Width="2.25" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

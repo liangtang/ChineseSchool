@@ -1,0 +1,27 @@
+.sf-arrows .sf-with-ul {
+	padding-right: 1.5em;
+}
+.sf-arrows .sf-with-ul::after {
+	width: 0px; height: 0px; right: 1em; font-family: FontAwesome; position: absolute; content: "\f107";
+}
+.sf-arrows > li > .sf-with-ul:focus::after {
+	border-top-color: white;
+}
+.sf-arrows > li:hover > .sf-with-ul::after {
+	border-top-color: white;
+}
+.sf-arrows > .sfHover > .sf-with-ul::after {
+	border-top-color: white;
+}
+.sf-arrows ul .sf-with-ul::after {
+	content: "\f105";
+}
+.sf-arrows ul li > .sf-with-ul:focus::after {
+	border-left-color: white;
+}
+.sf-arrows ul li:hover > .sf-with-ul::after {
+	border-left-color: white;
+}
+.sf-arrows ul .sfHover > .sf-with-ul::after {
+	border-left-color: white;
+}

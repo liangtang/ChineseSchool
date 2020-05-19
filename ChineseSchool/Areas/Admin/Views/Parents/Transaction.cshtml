@@ -1,0 +1,89 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Entities.Transaction
+
+@{
+    ViewBag.Title = "Transaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var isSubmitted = false;
+
+    function submitForm() {
+        if (!isSubmitted)
+        {
+            $('#submitform').val('Submitting... Plz Wait...')
+            isSubmitted = true;
+            $(this).closest('form').submit();
+        }else
+        {
+            return false;
+        }
+       
+    }
+
+    $(document).ready(function () {
+        $('[name="TransactionDate"]').addClass("datepicker");
+        $('#submitform').click(submitForm);
+
+        $(".datepicker").datepicker({ dateFormat: "yy-mm-dd" }).val();
+    })
+</script>
+
+@using (Html.BeginForm("Transaction","Parents",new {area="Admin"},FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Post Transaction</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+       @Html.HiddenFor(model => model.UserID)
+
+        @Html.HiddenFor(model => model.ParentsId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TransactionTypeSelectList("Payment")
+                @Html.ValidationMessageFor(model => model.TransactionType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransactionDate)
+                @Html.ValidationMessageFor(model => model.TransactionDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionDescription, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransactionDescription, new { htmlAttributes = new { placeholder = "required" } })
+                @Html.ValidationMessageFor(model => model.TransactionDescription)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransactionAmount)
+                @Html.ValidationMessageFor(model => model.TransactionAmount)
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="submitform" value="Post" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

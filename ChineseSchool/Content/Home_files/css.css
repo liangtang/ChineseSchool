@@ -1,0 +1,24 @@
+@font-face {
+	font-family: Oswald;
+	src: local("Oswald Light"), local("Oswald-Light"), url(https://fonts.gstatic.com/s/oswald/v16/TK3hWkUHHAIjg75-sh0TtM9E.woff) format("woff");
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: Oswald;
+	src: local("Oswald Regular"), local("Oswald-Regular"), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752Fz8A.woff) format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Oswald;
+	src: local("Oswald Bold"), local("Oswald-Bold"), url(https://fonts.gstatic.com/s/oswald/v16/TK3hWkUHHAIjg75-ohoTtM9E.woff) format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: Pontano Sans;
+	src: local("Pontano Sans"), local("PontanoSans-Regular"), url(https://fonts.gstatic.com/s/pontanosans/v5/qFdD35GdgYR8EzR6oBLDHa3ayz8L.woff) format("woff");
+	font-weight: 400;
+	font-style: normal;
+}

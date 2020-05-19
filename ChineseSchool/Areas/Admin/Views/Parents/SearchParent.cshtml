@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "SearchParent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Parent</h2>
+
+@using (Html.BeginForm("SearchParentResults","Parents",new {area="Admin"}, FormMethod.Get)){
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="firstname">First Name</label>
+        <div>
+            <input class="text-box single-line" name="firstname"/>
+        </div>
+    
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="lastname">Last Name</label>
+        <div>
+            <input class="text-box single-line" name="lastname" />
+        </div>
+
+    </div>
+     <div class="form-group">
+        <label class="control-label col-md-2" for="email">Email</label>
+        <div>
+            <input class="text-box single-line" name="email" />
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="Submit" id="submitform" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+
+
+}
+

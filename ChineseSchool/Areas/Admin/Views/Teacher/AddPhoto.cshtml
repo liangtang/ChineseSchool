@@ -1,0 +1,39 @@
+﻿@model System.Int32
+@{
+    ViewBag.Title = "Add Photo";
+}
+
+<h2>Add Photo</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Add Photo</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Teacher", "Create", new { controller = "Teacher", area = "Admin", id = Model }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Teacher", "Edit", new { controller = "Teacher", area = "Admin", id = Model }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddPhoto"?"active":"")">@Html.ActionLink("Add Photo", "AddPhoto", new { controller = "Teacher", area = "Admin", id = Model }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AssignClass"?"active":"")">@Html.ActionLink("Assign Class", "AssignClass", new { controller = "Teacher", area = "Admin", id = Model }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+
+@using (Html.BeginForm("AddPhoto", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Hidden("TeacherId",Model)
+    <div class="form-horizontal col-md-10">
+        <div class="form-group">
+            <label for="file" class="control-label col-md-2">Filename:</label>
+
+            <div class="col-md-10">
+                <input type="file" name="file" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}

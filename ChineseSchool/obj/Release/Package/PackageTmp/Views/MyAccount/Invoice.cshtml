@@ -1,0 +1,60 @@
+﻿@model ChineseSchool.Models.InvoiceViewModel
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Invoice</h2>
+
+@Html.Action("MyAccountNavBar", new { controller = "MyAccount", area = "", currentTab = "Invoice" })
+
+<div class="col-md-offset-1 col-md-9 panel-primary">
+    <div class="panel-heading text-center">Invoice Number: @Model.Invoice.InvoiceNo</div>
+    <table class="table">
+        <tr>
+            <th>
+               Description
+            </th>
+
+            <th>
+               Amount
+            </th>
+            <th>
+                Date
+            </th>
+
+
+
+
+        </tr>
+
+        @foreach (var item in Model.Transactions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                </td>
+
+
+            </tr>
+        }
+        <tr>
+            <td>Total</td>
+            <td>@Model.Invoice.Amount</td>
+            <td></td>
+        </tr>
+       
+    </table><div class="col-md-offset-2 col-md-4">
+    @Html.ActionLink("Print Invoice", "PrintInvoice", new { controller = "MyAccount", area = "", invoiceId = Model.Invoice.InvoiceId }, new { @class = "button button-primary", target = "_blank" })
+</div> 
+    <div class="col-md-offset-2 col-md-4">
+        @Html.ActionLink("Pay Invoice", "Payment", new { controller = "MyAccount", area = ""}, new { @class = "button button-primary" })
+     </div>
+
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ChineseSchool.Entities.Stuff>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Photo
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Position.PositionName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="../../../content/stuffimages/@item.ImagePath" target="_blank"><img src="../../../content/stuffimages/@item.ThumbNailPath" /></a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+
+        <td>
+            @(item.IsActive?"Yes":"No");
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position.PositionName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StuffId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StuffId }) |
+            @Html.ActionLink("Add Photo", "AddPhoto", new { id = item.StuffId }) |
+            
+           
+        </td>
+    </tr>
+}
+
+</table>

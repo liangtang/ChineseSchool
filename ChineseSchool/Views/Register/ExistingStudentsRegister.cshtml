@@ -1,0 +1,154 @@
+﻿@model ChineseSchool.Models.ExistingRegisterViewModel
+@using ChineseSchool.Extensions
+@{
+    ViewBag.Title = "ExistingStudentsRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int index =0;
+}
+
+<h2>Register Existing Students</h2>
+
+<script>
+    var isSubmitted = false;
+    //function serialize() {
+    //    var allRows = $('#students tr');
+    //    for (var i = 2; i <= allRows.length; i++) {
+    //        $('#students tr:nth-of-type(' + i + ') td:nth-of-type(1) input').attr('name', 'Students[' + (i - 2) + '].StudentId');
+    //        $('#students tr:nth-of-type(' + i + ') td:nth-of-type(2) input').attr('name', 'Students[' + (i - 2) + '].FirstName');
+    //        $('#students tr:nth-of-type(' + i + ') td:nth-of-type(3) input').attr('name', 'Students[' + (i - 2) + '].Lastname');           
+    //        $('#students tr:nth-of-type(' + i + ') td:nth-of-type(4) select').attr('name', 'Students[' + (i - 2) + '].IfRegister');
+    //        $('#students tr:nth-of-type(' + i + ') td:nth-of-type(5) select').attr('name', 'Students[' + (i - 2) + '].Class');
+    //        $('#students tr:nth-of-type(' + i + ') td:nth-of-type(6) select').attr('name', 'Students[' + (i - 2) + '].EnrichmentClass');
+    //    };
+    //}
+
+    function serialize() {
+        var allRows = $('#students .student');
+        for (var i = 1; i <= allRows.length; i++) {
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(1) h3').text("Student " + i);
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(1) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].Firstname');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(2) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].Lastname');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(3) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].Chinesename');
+            //$('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].Birthday');
+            //$('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(5) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].Gender');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].IfRegister');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(5) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].Class');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(6) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].EnrichmentClass');
+            //$('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].StudentId');
+            //$('#students .student:nth-of-type(' + i + ') div:nth-of-type(1) input').attr('name', 'Students[' + (i - 2) + '].FirstName');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(2) input').attr('name', 'Students[' + (i - 2) + '].Lastname');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(3) input').attr('name', 'Students[' + (i - 2) + '].ChineseName');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(4) input').attr('name', 'Students[' + (i - 2) + '].Birthday');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(5) select').attr('name', 'Students[' + (i - 2) + '].Gender');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(6) select').attr('name', 'Students[' + (i - 2) + '].IfRegister');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(7) select').attr('name', 'Students[' + (i - 2) + '].Class');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(8) select').attr('name', 'Students[' + (i - 2) + '].EnrichmentClass');
+        };
+    }
+
+    function submitForm() {
+        if (!isSubmitted) {
+            $('#submitform').val('Submitting... Plz Wait...');
+            isSubmitted = true;
+            serialize();
+            $(this).closest('form').submit();
+        }else
+        {
+            return false;
+        }
+    }
+
+    $(document).ready(function () {
+       
+        $('#submitform').click(submitForm);
+        //$('[name="newOrder.OrderDate"]').addClass("datepicker");
+        //$(".datepicker").datepicker({ dateFormat: "yy-mm-dd" }).val();
+    })
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(m=>m.ParentId)
+
+    <div class="form-horizontal">
+
+        <div id="students">
+               
+@foreach (var student in Model.Students)
+        {
+    @(index=index+1)
+    <div class="student panel-default">
+        @Html.Hidden("Students["+(index-1).ToString()+"].StudentId",student.StudentId)
+        <div class="panel-heading">
+            <h3>Student @index</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">First Name</label>
+                <div class="col-md-10">
+                    @Html.TextBox("FirstName", student.Firstname, new { @placeholder = "required",@readonly = "readonly"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Last Name</label>
+                <div class="col-md-10">
+                    @Html.TextBox("LastName", student.Lastname, new { @placeholder = "required", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Chinese Name</label>
+                <div class="col-md-10">
+                    @Html.TextBox("ChineseName", student.Chinesename, new { @placeholder = "Optional", @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Do You Want to Register Chinese Class?</label>
+                <div class="col-md-10">
+                    <select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Select Class</label>
+                <div class="col-md-10">
+                    @Html.ClassSelectList(Model.Classes, student.Class.HasValue ? student.Class.Value : 0)
+                </div>
+            </div>
+            <input type="hidden" name="StudentId" value="@student.StudentId" />
+            @*<div class="form-group">
+                    <label class="control-label col-md-2">Do You Want to Register Enrichment Class?</label>
+                    <div class="col-md-10">
+                        <select name="RegisterEnrichment"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <label class="control-label col-md-2">Enrichment Class</label>
+                <div class="col-md-10">
+                    @Html.EnrichmentClassSelectList(Model.EnrichmentClasses, student.EnrichmentClass)
+                </div>
+            </div>
+            </div>
+        </div>
+        }
+
+
+    </div>
+
+
+
+
+</div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" id="submitform" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+
+}
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

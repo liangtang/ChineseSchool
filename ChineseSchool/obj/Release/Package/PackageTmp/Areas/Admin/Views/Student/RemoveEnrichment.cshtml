@@ -1,0 +1,21 @@
+﻿@model ChineseSchool.Entities.Student
+@{
+    ViewBag.Title = "RemoveEnrichment";
+}
+
+@Html.Action("StudentNavBar", new { controller = "Student", area = "Admin", studentId = Model.StudentId, currentTab = "RemoveEnrichment" })
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h2>Are you sure to remove the Enrichment Class Registration?</h2>
+    <div class="col-md-offset-2 col-md-4">
+        @Html.Hidden("studentId",Model.StudentId)
+        <input type="submit" name="Submit" value="Remove" class="btn btn-danger" />
+    </div>
+    <div class=" col-md-4">
+        @Html.ActionLink("Cancel", "Details", new { controller = "Student", area = "Admin", studentId = Model.StudentId }, new {@class="btn btn-primary" })
+    </div>
+}

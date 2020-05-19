@@ -1,0 +1,105 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Areas.Admin.Models.TeacherAssignClassViewModel
+@{
+    ViewBag.Title = "AssignClass";
+}
+
+<h2>AssignClass</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Teach Details</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Teacher", "Create", new { controller = "Teacher", area = "Admin"}, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Teacher", "Edit", new { controller = "Teacher", area = "Admin", id = Model.Teacher.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddPhoto"?"active":"")">@Html.ActionLink("Add Photo", "AddPhoto", new { controller = "Teacher", area = "Admin", id = Model.Teacher.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AssignClass"?"active":"")">@Html.ActionLink("Assign Class", "AssignClass", new { controller = "Teacher", area = "Admin", id = Model.Teacher.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+
+
+<div>
+    @if (!String.IsNullOrEmpty(Model.Teacher.ThumbNailPath))
+    {
+        <a href="~/Content/stuffimages/@Model.Teacher.ImagePath"><img src="../../../Content/stuffimages/@Model.Teacher.ThumbNailPath" /></a>
+    }
+</div>
+<br />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Comment)
+        </dd>
+        <dt>
+            Current Class Assigned
+        </dt>
+
+        <dd>
+           @((Model.Teacher.ClassTeacherAssignments != null && Model.Teacher.ClassTeacherAssignments.Count>0)? Model.Teacher.ClassTeacherAssignments.First().Class.Classname:"Not Assigned")
+        </dd>
+
+        <dt>
+            Current Enrichment Class Assigned
+        </dt>
+
+        <dd>
+            @((Model.Teacher.EnrichmentClassTeacherAssignments != null && Model.Teacher.EnrichmentClassTeacherAssignments.Count > 0) ? Model.Teacher.EnrichmentClassTeacherAssignments.First().EnrichmentClass.ClassName : "Not Assigned")
+        </dd>
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.IsActive)
+        </dt>
+
+        <dd>
+            @(Model.Teacher.IsActive ? "Yes" : "No")
+        </dd>
+
+    </dl>
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true)
+            <input type="hidden" name="TeacherId" value="@Model.Teacher.TeacherId" />
+
+            <div class="form-group">
+                <label class="control-label col-md-4" for="Class">Class to Assign</label>
+                <div class="col-md-8">
+                    @Html.ClassSelectList(Model.Classes, Model.AssignedClassId,"AssignedClassId","Do not assign")
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" for="Class">Enrichment Class to Assign</label>
+                <div class="col-md-8">
+                    @Html.EnrichmentClassSelectList(Model.EnrichmentClasses, Model.AssignedEnrichmentClassId,"AssignedEnrichmentClassId","Do not assign")
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

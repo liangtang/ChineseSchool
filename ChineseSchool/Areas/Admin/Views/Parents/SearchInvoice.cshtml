@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Search Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SearchInvoiceResults", "Parents", new { area = "Admin" }, FormMethod.Get))
+{
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="firstname">Invlice</label>
+        <div>
+            <input class="text-box single-line" name="invoiceNo" />
+        </div>
+
+    </div>
+   
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="Submit" id="submitform" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+
+
+}

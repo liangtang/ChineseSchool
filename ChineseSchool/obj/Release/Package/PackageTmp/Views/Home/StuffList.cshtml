@@ -1,0 +1,123 @@
+﻿@model ChineseSchool.Models.StuffListViewModel
+@{
+    ViewBag.Title = "Stuff List";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>STAFF LIST</h2>
+    </div>
+    <div class="panel-body">
+        <span><strong>Administrative Team</strong></span><br /><br />
+        <div>
+            <div class="col-md-offset-4">
+                @if (Model.Principle != null && Model.Principle.ThumbNailPath != null && System.IO.File.Exists(System.IO.Path.Combine(Server.MapPath("~/Content/stuffimages"), Model.Principle.ThumbNailPath)))
+                {
+                    <a href="~/Content/stuffimages/@Model.Principle.ImagePath"><img src="../../Content/stuffimages/@Model.Principle.ThumbNailPath" class="image img-responsive" /></a>
+                }
+                else
+                {
+                    <img src="../../Content/pic_not_found.png" />
+                }
+                <span>@Model.Principle.Name, Principal</span>
+            </div>
+        </div>
+        <br/>
+        @foreach (var stuff in Model.VicePrinciples)
+        {
+            <div class="col-md-6">
+                <br/>
+                <div class="crop">
+                    @if (stuff.ThumbNailPath != null && System.IO.File.Exists(System.IO.Path.Combine(Server.MapPath("~/Content/stuffimages"), stuff.ThumbNailPath)))
+                {
+                        <a href="~/Content/stuffimages/@stuff.ImagePath"><img src="../../Content/stuffimages/@stuff.ThumbNailPath" class="image img-responsive" /></a>
+                }
+                else
+                {
+                        <img src="../../Content/pic_not_found.png" />
+                }
+                    </div>
+                    <span>@stuff.Name, @stuff.Position.PositionName</span>
+                </div>
+        }
+        @foreach (var stuff in Model.Administratives)
+        {
+            <div class="col-md-6">
+                <br/>
+                <div class="crop">
+                    @if (stuff.ThumbNailPath != null && System.IO.File.Exists(System.IO.Path.Combine(Server.MapPath("~/Content/stuffimages"),stuff.ThumbNailPath)))
+                    {
+                        <a href="~/Content/stuffimages/@stuff.ImagePath"><img src="../../Content/stuffimages/@stuff.ThumbNailPath" class="image img-responsive" /></a>
+                    }
+                    else
+                    {
+                        <img src="../../Content/pic_not_found.png" />
+                    }
+                </div>
+                <span>@stuff.Name, @stuff.Position.PositionName</span>
+            </div>
+        }
+    </div>
+    <br/>
+
+    <div class="panel-body">
+        <span><strong>Board of CCT</strong></span> <br/><br/>
+        <div>
+            <div class="col-md-offset-4">
+                <div class="crop">
+                    @if (Model.BoardChair != null && Model.BoardChair.ThumbNailPath != null && System.IO.File.Exists(System.IO.Path.Combine(Server.MapPath("~/Content/stuffimages"),Model.BoardChair.ThumbNailPath)))
+                    {
+                        <a href="~/Content/stuffimages/@Model.BoardChair.ImagePath"><img src="../../Content/stuffimages/@Model.BoardChair.ThumbNailPath" class="image img-responsive" /></a>
+                    }
+                    else
+                    {
+                        <img src="../../Content/pic_not_found.png" />
+                    }
+                 </div>
+                    <span>@Model.BoardChair.Name, Chair</span>
+                </div>
+            <br/>
+        </div>
+        @foreach (var stuff in Model.BoardMembers)
+        {
+            <div class="col-md-3">
+                <br/>
+                <div class="crop">
+                    @if (stuff.ThumbNailPath != null && System.IO.File.Exists(System.IO.Path.Combine(Server.MapPath("~/Content/stuffimages"),stuff.ThumbNailPath)))
+                {
+                        <a href="~/Content/stuffimages/@stuff.ImagePath"><img src="../../Content/stuffimages/@stuff.ThumbNailPath" class="image img-responsive" /></a>
+                }
+                else
+                {
+                        <img src="../../Content/pic_not_found.png" />
+                }
+                    </div>
+                    <span>@stuff.Name, @stuff.Position.PositionName</span>
+                </div>
+        }
+    </div>
+    <br/>
+    <br/>
+    <div class="panel-body">
+        <span><strong>Teaches Team</strong></span> <br /><br />
+        @foreach (var stuff in Model.Teachers)
+        {
+            <div class="col-md-4">
+                <br/>
+                <div class="crop">
+                    @if (stuff.ThumbNailPath != null && System.IO.File.Exists(System.IO.Path.Combine(Server.MapPath("~/Content/stuffimages"),stuff.ThumbNailPath)))
+                {
+                        <a href="~/Content/stuffimages/@stuff.ImagePath"><img src="../../Content/stuffimages/@stuff.ThumbNailPath" class="image img-responsive" /></a>
+                }
+                else
+                {
+                        <img src="../../Content/pic_not_found.png" />
+                }
+                    </div>
+                    <span>@stuff.Name 老师</span>
+                
+                </div>
+        }
+    </div>
+</div>
+

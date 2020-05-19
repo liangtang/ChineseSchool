@@ -1,0 +1,48 @@
+﻿@model ChineseSchool.Entities.Class
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>@Model.Classname 教学大纲</h2>
+        <br/>
+    </div>
+    <br/>
+    @if(Model.ClassTeacherAssignments!=null && Model.ClassTeacherAssignments.Count>0 )
+    {
+        <div class="col-md-2 col-md-offset-5" >
+            @if(Model.ClassTeacherAssignments==null || Model.ClassTeacherAssignments.Count==0 || String.IsNullOrEmpty(Model.ClassTeacherAssignments.First().Teacher.ThumbNailPath))
+            {
+                <img src="../../Content/pic_not_found.png" />
+            }
+            else
+            {
+                <img src="../../Content/stuffimages/@Model.ClassTeacherAssignments.First().Teacher.ThumbNailPath" />    
+            }
+            @if (Model.ClassTeacherAssignments != null && Model.ClassTeacherAssignments.Count > 0)
+            {
+                <span>@Model.ClassTeacherAssignments.First().Teacher.Name 老师</span>
+            }
+        </div>
+    }
+    <br/>
+    <div class="panel-body col-md-12">
+        <div class="col-md-2">
+            <img src="../../Content/image/@Model.imagePath" />
+        </div>
+        <div class="col-md-4">
+            <p>教学目标：</p>
+            <p>@Html.Raw(Model.target.Replace(Environment.NewLine,"<br/>"))</p>
+        </div>
+        <div class="col-md-4">
+            <p>教学内容：</p>
+            <p>@Html.Raw(Model.Content.Replace(Environment.NewLine,"<br/>"))</p>
+        </div>
+        <div class="col-md-2">
+            <p>阅读能力：</p>
+            <p>@Model.Ability</p>
+        </div>
+    </div>
+</div>
+

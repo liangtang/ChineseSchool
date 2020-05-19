@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ChineseSchool.Entities.Parent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Parent1Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parent1LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parent2Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parent2Lastname)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.PrimaryPhone)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.PrimaryEmail)
+        </th>
+      
+               <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent1Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent1LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent2Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent2Lastname)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimaryPhone)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimaryEmail)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { parentId=item.ParentsId }) |
+            @Html.ActionLink("Details", "Details", new { parentId=item.ParentsId }) |
+            @Html.ActionLink("Add Transaction", "Transaction", new { parentid=item.ParentsId })
+        </td>
+    </tr>
+}
+    
+</table>
+
+

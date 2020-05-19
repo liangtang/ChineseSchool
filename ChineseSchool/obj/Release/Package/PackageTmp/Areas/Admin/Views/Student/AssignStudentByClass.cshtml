@@ -1,0 +1,68 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Areas.Admin.Models.StudentByClassBulkViewModel
+@{
+    ViewBag.Title = "Assign Students By Class";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Student By Class</div>
+    <ul class="nav nav-pills nav-stacked ">
+        <li class="@(Model.selected==-1? "active":"")">@Html.ActionLink("ALL", "AssignStudentByClass", new { controller = "Student", area = "Admin", classId = -1 }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        @foreach (var c in Model.Classes)
+        {
+            <li class="@(c.ClassId==@Model.selected? "active":"")">@Html.ActionLink(c.Classname, "AssignStudentByClass", new { controller = "Student", area = "Admin", classId = c.ClassId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        }
+        <li class="@(Model.selected==0? "active":"")">@Html.ActionLink("Not Assigned", "AssignStudentByClass", new { controller = "Student", area = "Admin", classId = 0 }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+    </ul>
+</div>
+
+<div class="col-md-offset-1 col-md-9 panel panel-primary">
+    <div class="panel-heading">Student List For Class @Model.selectedName</div>
+    <div class="panel-body">
+      
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+                @Html.Hidden("selectedId",Model.selected)
+          
+              <table class="table table-responsive table-striped">
+                <tr>
+                    <th>Parent Name</th>
+                    <th>Student Name</th>
+                    <th>Previous Registed Class</th>
+                    <th>Current Class</th>
+                    <th>New Class</th>
+                    <th></th>
+               
+                </tr>
+                @foreach (var s in Model.Students)
+                {
+                    @Html.Hidden("students["+i.ToString()+"].ParentsId",s.ParentsId)
+                    @Html.Hidden("students[" + i.ToString() + "].StudentId", s.StudentId)
+                    @Html.Hidden("students[" + i.ToString() + "].Parent1Firstname", s.Parent1Firstname)
+                     @Html.Hidden("students[" + i.ToString() + "].Parent1LastName", s.Parent1LastName)
+                    @Html.Hidden("students[" + i.ToString() + "].PreviousClass", s.PreviousClass)
+                     @Html.Hidden("students[" + i.ToString() + "].Firstname", s.Firstname)
+                     @Html.Hidden("students[" + i.ToString() + "].Lastname", s.Lastname)
+                     @Html.Hidden("students[" + i.ToString() + "].Classname", s.Classname)
+                    <tr>
+                        <td> @s.Parent1LastName, @s.Parent1Firstname</td>
+                        <td> @s.Lastname, @s.Firstname</td>
+                        <td>@s.PreviousClass</td>
+                        <td>@s.Classname</td>
+                        <td>@Html.ClassSelectList(Model.Classes,s.classId.HasValue?s.classId.Value:0,"students["+i.ToString()+"].classId")</td>
+                        <td>@Html.ActionLink("Account Details", "Details", new { controller = "Parents", area = "Admin", parentId = s.ParentsId })</td>
+                        
+                  
+
+                    </tr>
+                    i++;
+                }
+                </table>
+           <input type="submit" value="Save and continue" />
+            
+           }
+             </div>
+</div>

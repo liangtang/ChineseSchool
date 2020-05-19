@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Email Not Confirmed!";
+}
+
+<div class="panel panel-primary">
+
+    <h2>Your email is not confirmed. Please check your email. </h2>
+    <p>If you need to resend the comfirmed click @Html.ActionLink("Resend Confirmation Email", "ResendConfirmationEmail", new {userid = ViewBag.userid })</p>
+</div>
+
+

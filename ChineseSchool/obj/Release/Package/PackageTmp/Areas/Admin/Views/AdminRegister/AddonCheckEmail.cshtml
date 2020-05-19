@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "AddonCheckEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4>Please Enter the Primary Email</h4>
+@using (Html.BeginForm("AddonRegistration","AdminRegister", new {area="admin"},FormMethod.Get))
+{
+     <div class="form-horizontal">
+            
+     
+          <div class="form-group">
+                <label class="control-label col-md-4" for="email">Primary Email</label>
+                <div class="col-md-8">
+                    <input class="text-box single-line" data-val="true" data-val-required="The Primary Phone field is required." id="PrimaryEmail" name="email" type="text" value="" />
+       
+                </div>
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-offset-4 col-md-8">
+                 <input type="submit" value="Submit" class="btn btn-primary" />
+             </div>
+         </div>
+   </div>
+    
+
+
+    
+}
+

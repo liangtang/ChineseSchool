@@ -1,0 +1,263 @@
+﻿@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Chinese School of Toledo</title>
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/page.css" rel="stylesheet" />
+    <link href="/Content/Site.css" rel="stylesheet" />
+    <link href="/Content/themes/base/all.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    
+
+</head>
+<body>
+    <div class="bodydiv container">
+        <div class="top">
+
+            <a href="index.asp"><img src="~/Content/image/cropped-CCT-Logo.png" /></a>
+
+        </div>
+        @if (User.IsInRole("Administrators"))
+        {
+            <div class="navbar navbar-inverse navbar-custom ">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Chinese Center of Toledo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown">Accounts<b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("All Accounts", "Index", new { controller = "AdminAccount", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("All Roles", "Index", new { controller = "Role", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Add Role", "Create", new { controller = "Role", area = "Admin" })</li>
+
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown">Add Registration<b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("New Registration", "NewRegistration", new { controller = "AdminRegister", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Existing Registration", "ExistingRegistration", new { controller = "AdminRegister", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Addon Registration", "AddonRegistration", new { controller = "AdminRegister", area = "Admin" }, new { disabled = "disabled" })</li>
+                                </ul>
+                            </li>
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown">Browse<b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("All Parents", "Index", new { controller = "Parents", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("All Students", "Index", new { controller = "Student", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Students by Class", "StudentsByClass", new { controller = "Student", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Students by Enrichment Class", "StudentsByEnrichmentClass", new { controller = "Student", area = "Admin" })</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown">Setup<b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("View Setup", "Index", new { controller = "Setup", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Add Class", "AddClass", new { controller = "Setup", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Add EnrichmentClass", "AddEnrichmentClass", new { controller = "Setup", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Setup New Semester", "NewSemester", new { controller = "Setup", area = "Admin" })</li>
+                                  
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown">Assign<b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("Assign Class", "AssignStudentByClass", new { controller = "Student", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Assign Enrichment Class", "AssignStudentByEnrichmentClass", new { controller = "Student", area = "Admin" })</li>
+                                    
+                                  
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown">Search<b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("All Parents", "Index", new { controller = "Parents", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("All Students", "Index", new { controller = "Student", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Search Parents", "SearchParent", new { controller = "Parents", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Search Student", "SearchStudent", new { controller = "Student", area = "Admin" })</li>
+                                    <li>@Html.ActionLink("Search Invoice", "SearchInvoice", new { controller = "Parents", area = "Admin" })</li>
+                               
+
+
+
+                                </ul>
+                            </li>
+
+
+
+
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="navbar navbar-inverse navbar-custom">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Chinese School", "Index", "Home", null, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" })</li>
+                            <li>@Html.ActionLink("Register", "Register",  new {controller="Register", area = "" })</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle text-success" data-toggle="dropdown"><strong>My Account</strong><b class="caret"></b></a>
+                                <ul class="dropdown-menu text-primary">
+                                    <li>@Html.ActionLink("Dashboard", "Index", new { controller = "MyAccount", area = "" })</li>
+                                    <li>@Html.ActionLink("Change Password", "ChangePassword", new { controller = "MyAccount", area = "" })</li>
+                                    <li>@Html.ActionLink("Edit Parents Info", "ParentsInfo", new { controller = "MyAccount", area = "" })</li>
+                                    <li>@Html.ActionLink("Add Children", "AddStudents", new { controller = "MyAccount", area = "" })</li>
+                                    <li>@Html.ActionLink("Invoice", "Invoice", new { controller = "MyAccount", area = "" })</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="container body-content">
+            
+            <div class="panel-heading text-center text-danger">
+                @if (TempData["Message"] != null)
+                {
+                    <h2>@TempData["Message"]</h2>
+                }
+            </div>
+            @RenderBody()
+            <br />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+        </div>
+
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Chinese Center Of Toledo</title>
+
+    @*@Styles.Render("~/Content/css")*@
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/page.css" rel="stylesheet" />
+    <link href="/Content/Site.css" rel="stylesheet" />
+    <link href="/Content/themes/base/all.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @if (IsSectionDefined("scripts"))
+    {
+        @RenderSection("scripts")
+    }
+    @if (IsSectionDefined("AddToHead"))
+    {
+        @RenderSection("AddToHead", required: false)
+    }
+    <link rel="shortcut icon icon" href="" />
+    @*<script>
+        $(document).ready(function () {
+            $("#tgy").click(function () {
+                $.post("Home/About", {}, function () {
+                   // alert("ffff");
+                }
+                    );
+
+
+            });
+        });
+
+        </script>*@
+</head>
+<body class="container">
+    <nav class="navbar     container">
+        <div class="container-fluid">
+            <div class="navbar-header ">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <div class="navbar-collapse collapse ">
+                <div class="col-md-2">
+                    <a href="/"><img src="../../content/image/logo.png" class="img-responsive" id="logo" /></a>
+                </div>
+                @Html.Action("GenerateTopNavBar", "Nav", new { Area = "" })
+
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container body-content">
+        <div class="panel-heading text-center text-danger">
+            @if (TempData["Message"] != null)
+            {
+                <h2>@TempData["Message"]</h2>
+            }
+        </div>
+        @RenderBody()
+        <hr />
+
+    </div><hr />
+    <footer class="row">
+
+        <div class="panel-footer text-center">
+            <p>
+                Copyright (C) 2014 All Rights Reserved. Chinese Center Of Toledo
+                Service time：Monday to Sunday 08:30 — 20:00  Tel：419-450-9029
+            </p>
+        </div>
+
+
+    </footer>
+
+</body>
+</html>
+
+

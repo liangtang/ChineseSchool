@@ -1,0 +1,57 @@
+﻿@model ChineseSchool.Entities.Teacher
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Edit Teacher</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+
+        <li>@Html.ActionLink("Add Teacher", "Create", new { controller = "Teacher", area = "Admin" }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Details"?"active":"")">@Html.ActionLink("Teacher Details", "Details", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Teacher", "Edit", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddPhoto"?"active":"")">@Html.ActionLink("Add Photo", "AddPhoto", new { controller = "Teacher", area = "Admin", id = Model.TeacherId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal col-md-10">
+        <h4>Teacher</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.TeacherId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment)
+                @Html.ValidationMessageFor(model => model.Comment)
+            </div>
+        </div>
+        @Html.HiddenFor(model=>model.ImagePath)
+        @Html.HiddenFor(model=>model.ThumbNailPath)
+        @Html.HiddenFor(model=>model.IsActive)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

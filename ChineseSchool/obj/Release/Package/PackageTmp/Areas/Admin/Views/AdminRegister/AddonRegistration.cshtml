@@ -1,0 +1,243 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Models.AddStudentViewModel
+@{
+    int parentId = ViewBag.parentId;
+    ViewBag.Title = "AddStudents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+
+    function serialize() {
+        var allRows = $('#students .student');
+        for (var i = 1; i <= allRows.length; i++) {
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(1) h3').text("Student " + i);
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(1) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].FirstName');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(2) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].Lastname');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(3) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].ChineseName');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(4) div:nth-of-type(1) input').attr('name', 'Students[' + (i - 1) + '].Birthday');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(5) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].Gender');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(6) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].IfRegister');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(7) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].Class');
+            $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(8) div:nth-of-type(1) select').attr('name', 'Students[' + (i - 1) + '].EnrichmentClass');
+
+            //$('#students .student:nth-of-type(' + i + ') div:nth-of-type(1) input').attr('name', 'Students[' + (i - 2) + '].FirstName');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(2) input').attr('name', 'Students[' + (i - 2) + '].Lastname');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(3) input').attr('name', 'Students[' + (i - 2) + '].ChineseName');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(4) input').attr('name', 'Students[' + (i - 2) + '].Birthday');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(5) select').attr('name', 'Students[' + (i - 2) + '].Gender');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(6) select').attr('name', 'Students[' + (i - 2) + '].IfRegister');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(7) select').attr('name', 'Students[' + (i - 2) + '].Class');
+            //$('#students tr:nth-of-type(' + i + ') td:nth-of-type(8) select').attr('name', 'Students[' + (i - 2) + '].EnrichmentClass');
+        };
+    }
+    function deleteButtonBinding() {
+        $('.deletestudent').bind('click', function () {
+            var itemCount = $('#students .student').length - 1;
+            if (itemCount > 0) {
+                $(this).parent().parent().remove();
+                serialize();
+            }
+        })
+    }
+    function createNewItem() {
+        @*var td1 = $('<td>').append($('<input>', { type: 'text', name: "FirstName",placeholder:"required" }));
+        var td2 = $('<td>').append($('<input>', { type: 'text', name: "LastName", placeholder: "required" }));
+        var td3 = $('<td>').append($('<input>', { type: 'text', name: "ChineseName", placeholder: "optional" }));
+        var td4 = $('<td>').append($('<input>', { type: 'text', name: "BirthDate",value:"2006-01-01",class:"datepicker"}));
+        var td5 = $('<td>');
+        td5.html ('<select name="gender"><option value="M">Male</option><option value="F">Female</option></select>');
+        var td6 = $('<td>');
+        td6.html('<select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>');
+        var td7 = $('<td>');
+        td7.html('@Html.ClassSelectList(Model.Classes)');
+        var td8 = $('<td>');
+        td8.html('@Html.EnrichmentClassSelectList(Model.EnrichmentClasses)');
+
+        var deleteButton = $('<button>', { type: 'button', 'class': 'btn btn-danger btn-xs deletestudent' }).html('Delete');
+        var td9 = $('<td>').append(deleteButton);
+        return $('<tr>').append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8).append(td9);*@
+        var label1 = $('<label>', { class: "control-label col-md-2" });
+        label1.text("First Name");
+        var div1 = $('<div>', { class: "form-group" }).append(label1).append($('<div>', { class: "col-md-10" }).append($('<input>', { type: 'text', name: "FirstName", placeholder: "required" })));
+        var label2 = $('<label>', { class: "control-label col-md-2" });
+        label2.text("Last Name");
+        var div2 = $('<div>', { class: "form-group" }).append(label2).append($('<div>', { class: "col-md-10" }).append($('<input>', { type: 'text', name: "Lastname", placeholder: "required" })));
+        var label3 = $('<label>', { class: "control-label col-md-2" });
+        label3.text("Chinese Name");
+        var div3 = $('<div>', { class: "form-group" }).append(label3).append($('<div>', { class: "col-md-10" }).append($('<input>', { type: 'text', name: "ChineseName", placeholder: "Optional" })));
+        var label4 = $('<label>', { class: "control-label col-md-2" });
+        label4.text("Birthday");
+        var div4 = $('<div>', { class: "form-group" }).append(label4).append($('<div>', { class: "col-md-10" }).append($('<input>', { type: 'text', name: "BirthDate", value: "2006-01-01", class: "datepicker" })));
+        var label5 = $('<label>', { class: "control-label col-md-2" });
+        label5.text("Gender");
+        var div5_1 = $('<div>', { class: "col-md-10" });
+        div5_1.html('<select name="gender"><option value="M">Male</option><option value="F">Female</option></select>');
+        var div5 = $('<div>', { class: "form-group" }).append(label5).append(div5_1);
+        var label6 = $('<label>', { class: "control-label col-md-2" });
+        label6.text("Do You Want to Register Chinese Class?");
+        var div6_1 = $('<div>', { class: "col-md-10" });
+        div6_1.html('<select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>');
+        var div6 = $('<div>', { class: "form-group" }).append(label6).append(div6_1);
+        var label7 = $('<label>', { class: "control-label col-md-2" });
+        label7.text("Select Class");
+        var div7_1 = $('<div>', { class: "col-md-10" });
+        div7_1.html('@Html.ClassSelectList(Model.Classes)');
+        var div7 = $('<div>', { class: "form-group" }).append(label7).append(div7_1);
+        //var label8 = $('<label>', { class: "control-label col-md-2" });
+        //label8.text('Do You Want to Register Enrichment Class?');
+        //var div8_1 =  $('<div>',{class:"col-md-10"});
+        //div8_1.html('<select name="RegisterEnrichment"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>')
+        //var div8 =  $('<div>', {class:"form-group"}).append(label8).append(div8_1);
+        var label9 = $('<label>', { class: "control-label col-md-2" });
+        label9.text('Select Enrichment Class');
+        var div9_1 = $('<div>', { class: "col-md-10" });
+        div9_1.html('@Html.EnrichmentClassSelectList(Model.EnrichmentClasses)');
+        var div9 = $('<div>', { class: "form-group" }).append(label9).append(div9_1);
+        var deleteButton = $('<button>', { type: 'button', 'class': 'btn btn-danger btn-xs deletestudent' }).html('Delete');
+        var panel_body = $('<div>', { class: "panel-body" }).append(div1).append(div2).append(div3).append(div4).append(div5).append(div6).append(div7).append(div9);
+
+        var header = $('<h3>');
+        header.text("Student 2");
+        var panel_heading = $('<div>', { class: "panel-heading" }).append(header).append(deleteButton);
+
+        return $('<div>', { class: "student panel-default" }).append(panel_heading).append(panel_body);
+
+    }
+
+    function cleanForm() {
+        var items = $('#students .student');
+        var itemsToBeDelete = [];
+        for (var i = 1; i <= items.length; i++) {
+            var value1 = $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(1) div input').val();
+            var value1 = $('#students div:nth-of-type(' + i + ') div:nth-of-type(2) div:nth-of-type(2) div input').val();
+            if (!value1 && !value2) {
+                itemsToBeDelete[itemsToBeDelete.length] = $('#students tr:nth-of-type(' + i + ')');
+            }
+        }
+
+        for (var index = 0; index < itemsToBeDelete.length; index++) {
+            itemsToBeDelete[index].remove();
+        }
+    }
+
+    function submitForm() {
+        cleanForm();
+        serialize();
+        $(this).closest('form').submit();
+    }
+
+
+    $(document).ready(function () {
+        deleteButtonBinding();
+        serialize();
+        $('#addstudent').click(function () {
+            $('#students .student').last().after(createNewItem());
+            deleteButtonBinding();
+            serialize();
+            $(".datepicker").datepicker({
+
+                dateFormat: "yy-mm-dd",
+
+                changeMonth: true,
+                changeYear: true
+
+            });//.val();
+        });
+
+        $('#submitform').click(submitForm);
+        //$('[name="newOrder.OrderDate"]').addClass("datepicker");
+        $(".datepicker").datepicker({
+
+            dateFormat: "yy-mm-dd",
+
+            changeMonth: true,
+            changeYear: true
+
+        });//.val();
+    })
+</script>
+
+@Html.Action("MyAccountNavBar", new { controller = "MyAccount", area = "", currentTab = "AddStudents" })
+
+<div class=" col-md-9 panel panel-primary">
+    <br />
+    <div class="panel-heading">My Accont - Add Children</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("parentId", parentId)
+        @Html.ValidationMessage("Students")
+    <div id="students">
+        <div class="student panel-default">
+            <div class="panel-heading">
+                <h3>Student 1</h3><button type="button" class="btn btn-danger btn-xs deletestudent">Delete</button>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label col-md-2">First Name</label>
+                    <div class="col-md-10">
+                        @Html.TextBox("FirstName", null, new { @placeholder = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Last Name</label>
+                    <div class="col-md-10">
+                        @Html.TextBox("LastName", null, new { @placeholder = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Chinese Name</label>
+                    <div class="col-md-10">
+                        @Html.TextBox("ChineseName", null, new { @placeholder = "Optional" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Birth Date</label>
+                    <div class="col-md-10">
+                        @Html.TextBox("BirthDate", null, new { @class = "datepicker", @placeholder = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Gender</label>
+                    <div class="col-md-10">
+                        <select name="gender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Do You Want to Register Chinese Class?</label>
+                    <div class="col-md-10">
+                        <select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Select Class</label>
+                    <div class="col-md-10">
+                        @Html.ClassSelectList(Model.Classes)
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <label class="control-label col-md-2">Do You Want to Register Enrichment Class?</label>
+                    <div class="col-md-10">
+                        <select name="RegisterEnrichment"><option value="true" selected="selected">Yes</option><option value="false">No</option></select>
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <label class="control-label col-md-2">Enrichment Class</label>
+                    <div class="col-md-10">
+                        @Html.EnrichmentClassSelectList(Model.EnrichmentClasses)
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+        
+        }
+    </div>

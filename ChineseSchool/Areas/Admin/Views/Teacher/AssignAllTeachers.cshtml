@@ -1,0 +1,57 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Areas.Admin.Models.TeacherAssignmentViewModel
+@{
+    ViewBag.Title = "AssignAllTeachers";
+    int i = 0;
+}
+
+<h2>AssignAllTeachers</h2>
+<div class="panel panel-primary">
+   
+    <div class="panel-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+          
+
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>Teacher Name</th>
+               
+                    <th>Current Class</th>
+
+                    <th>New Class</th>
+                    <th>Current EnrichmentClass</th>
+                    <th>New EnrichmentClass</th>
+                    <th></th>
+
+                </tr>
+                @foreach (var s in Model.Assignments    )
+                {
+                    @Html.Hidden("vm.Assignments[" + i.ToString() + "].TeacherId", s.TeacherId)
+                    @Html.Hidden("vm.Assignments[" + i.ToString() + "].Name", s.Name)
+                 
+                  
+                    <tr>
+                        <td> @s.Name</td>
+                       
+                        <td>@s.ClassName</td>
+                        <td>@Html.ClassSelectList(Model.Classes, s.ClassId.HasValue ? s.ClassId.Value : 0, "vm.Assignments[" + i.ToString() + "].classId")</td>
+                        <td>@s.EnrichmentClassName</td>
+                        <td>@Html.EnrichmentClassSelectList(Model.EnrichmentClasses, s.EnrichmentClassId.HasValue ? s.EnrichmentClassId.Value : 0, "vm.Assignments[" + i.ToString() + "].EnrichmentclassId","NOT ASSIGNED")</td>
+                        <td>@Html.ActionLink("Teacher Details", "Details", new { controller = "Teacher", area = "Admin", id = s.TeacherId })</td>
+
+
+
+                    </tr>
+                    i++;
+                }
+            </table>
+            <input type="submit" value="Save and continue" />
+
+        }
+    </div>
+</div>
+
+

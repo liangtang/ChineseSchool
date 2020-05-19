@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzL8eag2Y4UiiKLTYaJyUpwAAAAACAAAAAAAQZgAAAAEAACAAAABPDhWDjjRI5SxUuy/OCMSSCewLPMyoA1jx92zH9gUk+wAAAAAOgAAAAAIAACAAAADBPivtEDHVTgAeNOD9wW0v0YPXoTmhj1h9saHiG1tFgiAAAAAFf6XxI61lXmoByhRlOex5IZB1dxVzz1Jx8dOCUGaoaUAAAAC32SR4GTNyb1L3c3a8TahUevZXaex04GOhHLBwv46csxJCYKuDwtQcP06sNlA66q9rZC+8Y2Lx8hyorc9Bt8gO</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp.site4now.net/site1</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Views/Home/Seal.cshtml">
+      <publishTime>11/21/2019 22:17:23</publishTime>
+    </File>
+    <File Include="Views/Nav/GenerateTopNavBar.cshtml">
+      <publishTime>11/21/2019 23:00:46</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

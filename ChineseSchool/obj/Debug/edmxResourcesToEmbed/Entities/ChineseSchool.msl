@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChineseSchoolModelStoreContainer" CdmEntityContainer="ChineseSchoolEntities">
+    <FunctionImportMapping FunctionImportName="RegisterStudent" FunctionName="ChineseSchoolModel.Store.RegisterStudent" />
+    <FunctionImportMapping FunctionImportName="sp_updateinvoice" FunctionName="ChineseSchoolModel.Store.sp_updateinvoice" />
+    <FunctionImportMapping FunctionImportName="sp_deleteparent" FunctionName="ChineseSchoolModel.Store.sp_deleteparent" />
+    <FunctionImportMapping FunctionImportName="usp_DeleteEvent" FunctionName="ChineseSchoolModel.Store.usp_DeleteEvent" />
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+          <ScalarProperty Name="Ability" ColumnName="Ability" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="target" ColumnName="target" />
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+          <ScalarProperty Name="ClassDescription" ColumnName="ClassDescription" />
+          <ScalarProperty Name="Classname" ColumnName="Classname" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassRegistrations">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.ClassRegistration">
+        <MappingFragment StoreEntitySet="ClassRegistration">
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="ClassRegistrationId" ColumnName="ClassRegistrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassTeacherAssignments">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.ClassTeacherAssignment">
+        <MappingFragment StoreEntitySet="ClassTeacherAssignment">
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="ClassTeacherAssignmentId" ColumnName="ClassTeacherAssignmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnrichmentClasses">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.EnrichmentClass">
+        <MappingFragment StoreEntitySet="EnrichmentClass">
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+          <ScalarProperty Name="Price2Descrioption" ColumnName="Price2Descrioption" />
+          <ScalarProperty Name="Price2" ColumnName="Price2" />
+          <ScalarProperty Name="Price1Description" ColumnName="Price1Description" />
+          <ScalarProperty Name="Price1" ColumnName="Price1" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnrichmentClassRegistrations">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.EnrichmentClassRegistration">
+        <MappingFragment StoreEntitySet="EnrichmentClassRegistration">
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="EnrichmentClassId" ColumnName="EnrichmentClassId" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="EnrichmentClassRegistrationId" ColumnName="EnrichmentClassRegistrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="UpdateTimeStamp" ColumnName="UpdateTimeStamp" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="CreateTimeStamp" ColumnName="CreateTimeStamp" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="ThumbNailPath" ColumnName="ThumbNailPath" />
+          <ScalarProperty Name="UpdateTimeStamp" ColumnName="UpdateTimeStamp" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="CreateTimeStamp" ColumnName="CreateTimeStamp" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parents">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Parent">
+        <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+          <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+          <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+          <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="Parent2Lastname" ColumnName="Parent2Lastname" />
+          <ScalarProperty Name="Parent2Firstname" ColumnName="Parent2Firstname" />
+          <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+          <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semesters">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Semester">
+        <MappingFragment StoreEntitySet="Semester">
+          <ScalarProperty Name="BookCharge" ColumnName="BookCharge" />
+          <ScalarProperty Name="VolunteerDeposit" ColumnName="VolunteerDeposit" />
+          <ScalarProperty Name="RegistrationFeeAfterEndDate" ColumnName="RegistrationFeeAfterEndDate" />
+          <ScalarProperty Name="RegistrationFeeBeforeEndDate" ColumnName="RegistrationFeeBeforeEndDate" />
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+          <ScalarProperty Name="Price5Description" ColumnName="Price5Description" />
+          <ScalarProperty Name="Price5" ColumnName="Price5" />
+          <ScalarProperty Name="Price4Description" ColumnName="Price4Description" />
+          <ScalarProperty Name="Price4" ColumnName="Price4" />
+          <ScalarProperty Name="Price3Description" ColumnName="Price3Description" />
+          <ScalarProperty Name="Price3" ColumnName="Price3" />
+          <ScalarProperty Name="Price2Description" ColumnName="Price2Description" />
+          <ScalarProperty Name="Price2" ColumnName="Price2" />
+          <ScalarProperty Name="Price1Description" ColumnName="Price1Description" />
+          <ScalarProperty Name="Price1" ColumnName="Price1" />
+          <ScalarProperty Name="RegisterEndDate" ColumnName="RegisterEndDate" />
+          <ScalarProperty Name="RegisterStartDate" ColumnName="RegisterStartDate" />
+          <ScalarProperty Name="SemesterSeason" ColumnName="SemesterSeason" />
+          <ScalarProperty Name="SemesterYear" ColumnName="SemesterYear" />
+          <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="EnrichmentClass" ColumnName="EnrichmentClass" />
+          <ScalarProperty Name="RegisterClass" ColumnName="RegisterClass" />
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Chinesename" ColumnName="Chinesename" />
+          <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ThumbNailPath" ColumnName="ThumbNailPath" />
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+          <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+          <ScalarProperty Name="UpdateTimeStemp" ColumnName="UpdateTimeStemp" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateTimeStemp" ColumnName="CreateTimeStemp" />
+          <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="TransactionDescription" ColumnName="TransactionDescription" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_StudentClass">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.v_StudentClass">
+        <MappingFragment StoreEntitySet="v_StudentClass">
+          <ScalarProperty Name="classId" ColumnName="classId" />
+          <ScalarProperty Name="Classname" ColumnName="Classname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+          <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+          <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_StudentClassDetails">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.v_StudentClassDetails">
+        <MappingFragment StoreEntitySet="v_StudentClassDetails">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Classname" ColumnName="Classname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+          <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+          <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_StudentEnrichmentClass">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.v_StudentEnrichmentClass">
+        <MappingFragment StoreEntitySet="v_StudentEnrichmentClass">
+          <ScalarProperty Name="classId" ColumnName="classId" />
+          <ScalarProperty Name="Classname" ColumnName="Classname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Parent1LastName" ColumnName="Parent1LastName" />
+          <ScalarProperty Name="Parent1Firstname" ColumnName="Parent1Firstname" />
+          <ScalarProperty Name="ParentsId" ColumnName="ParentsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_TeacherClass">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.v_TeacherClass">
+        <MappingFragment StoreEntitySet="v_TeacherClass">
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsExclusive" ColumnName="IsExclusive" />
+          <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+          <ScalarProperty Name="PositionTypeId" ColumnName="PositionTypeId" />
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PositionTypes">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.PositionType">
+        <MappingFragment StoreEntitySet="PositionType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="PositionTypeName" ColumnName="PositionTypeName" />
+          <ScalarProperty Name="PositionTypeId" ColumnName="PositionTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stuffs">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Stuff">
+        <MappingFragment StoreEntitySet="Stuff">
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ThumbNailPath" ColumnName="ThumbNailPath" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StuffId" ColumnName="StuffId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnrichmentClassTeacherAssignments">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.EnrichmentClassTeacherAssignment">
+        <MappingFragment StoreEntitySet="EnrichmentClassTeacherAssignment">
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="EnrichmentClassId" ColumnName="EnrichmentClassId" />
+          <ScalarProperty Name="EnrichmentClassTeacherAssignmentId" ColumnName="EnrichmentClassTeacherAssignmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_TeacherAssignment">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.v_TeacherAssignment">
+        <MappingFragment StoreEntitySet="v_TeacherAssignment">
+          <ScalarProperty Name="EnrichmentClassName" ColumnName="EnrichmentClassName" />
+          <ScalarProperty Name="EnrichmentClassId" ColumnName="EnrichmentClassId" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Videos">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.Video">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="upsrt_user" ColumnName="upsrt_user" />
+          <ScalarProperty Name="upsrt_dttm" ColumnName="upsrt_dttm" />
+          <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CurrentRegistrationDetails">
+      <EntityTypeMapping TypeName="ChineseSchoolModel.v_CurrentRegistrationDetails">
+        <MappingFragment StoreEntitySet="v_CurrentRegistrationDetails">
+          <ScalarProperty Name="EnrichmentClassname" ColumnName="EnrichmentClassname" />
+          <ScalarProperty Name="Classname" ColumnName="Classname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AddEnrichment" FunctionName="ChineseSchoolModel.Store.sp_AddEnrichment" />
+    <FunctionImportMapping FunctionImportName="sp_RemoveEnrichment" FunctionName="ChineseSchoolModel.Store.sp_RemoveEnrichment" />
+  </EntityContainerMapping>
+</Mapping>

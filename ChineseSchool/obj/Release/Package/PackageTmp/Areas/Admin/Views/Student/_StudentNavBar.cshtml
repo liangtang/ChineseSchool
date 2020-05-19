@@ -1,0 +1,15 @@
+﻿
+@model ChineseSchool.Entities.Student
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Student Info</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+        <li class="@(ViewBag.currentTab=="Details"? "active":"")">@Html.ActionLink("Student Details", "Details", new { controller = "Student", area = "Admin",studentId=Model.StudentId  }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li >@Html.ActionLink("Account Details", "Details", new { controller = "Parents", area = "Admin", parentId = Model.ParentsId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Student", "Edit", new { controller = "Parents", area = "Admin", studentId = Model.StudentId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AssignClass"?"active":"")">@Html.ActionLink("Assign Class", "AssignClass", new { controller = "Student", area = "Admin",studentId = Model.StudentId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddEnrichment"?"active":"")">@Html.ActionLink("Add Enrichment", "AddEnrichment", new { controller = "Student", area = "Admin", studentId = Model.StudentId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="RemoveEnrichment"?"active":"")">@Html.ActionLink("Remove Enrichment", "RemoveEnrichment", new { controller = "Student", area = "Admin", studentId = Model.StudentId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+

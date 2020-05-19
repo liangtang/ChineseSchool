@@ -1,0 +1,124 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Models.ExistingRegisterViewModel
+@{
+    ViewBag.Title = "ExistingRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register Existing Students</h2>
+
+<script>
+    var isSubmitted = false;
+    function serialize() {
+        var allRows = $('#students tr');
+        for (var i = 2; i <= allRows.length; i++) {
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(1) input').attr('name', 'Students[' + (i - 2) + '].StudentId');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(2) input').attr('name', 'Students[' + (i - 2) + '].FirstName');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(3) input').attr('name', 'Students[' + (i - 2) + '].Lastname');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(4) select').attr('name', 'Students[' + (i - 2) + '].IfRegister');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(5) select').attr('name', 'Students[' + (i - 2) + '].Class');
+            $('#students tr:nth-of-type(' + i + ') td:nth-of-type(6) select').attr('name', 'Students[' + (i - 2) + '].EnrichmentClass');
+        };
+    }
+
+    function submitForm() {
+        if (!isSubmitted) {
+            $('#submitform').val('Submitting... Plz Wait...');
+            isSubmitted = true;
+            serialize();
+            $(this).closest('form').submit();
+        } else {
+            return false;
+        }
+    }
+
+    $(document).ready(function () {
+
+        $('#submitform').click(submitForm);
+        //$('[name="newOrder.OrderDate"]').addClass("datepicker");
+        //$(".datepicker").datepicker({ dateFormat: "yy-mm-dd" }).val();
+    })
+</script>
+
+
+<div class="panel panel-primary" >
+    <div class="panel-heading">
+        <h4>Previous Registration information</h4>
+    </div>
+    <table class="table-responsive" id="students">
+        <tr>
+            
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Previous Registed Class</th>
+            <th>Previous Retisted Erichment Class</th>
+        </tr>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+               
+                <td>@Html.TextBox("FirstName", student.Firstname)</td>
+                <td>@Html.TextBox("LastName", student.Lastname)</td>
+
+                <td>@student.PreviousClass</td>
+                <td>@student.PreviousEnrichmentClass</td>
+
+
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4>New Registration information</h4>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <div>
+                <table class="table-responsive" id="students">
+                    <tr>
+                        <td></td>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Check to Register Class</th>
+                        <th>Grade</th>
+                        <th>Erichment Class</th>
+                    </tr>
+
+                    @foreach (var student in Model.Students)
+                    {
+                        <tr>
+                            <td><input name="Students[]StudentId" type="hidden" value="@student.StudentId" /></td>
+                            <td>@Html.TextBox("FirstName", student.Firstname)</td>
+                            <td>@Html.TextBox("LastName", student.Lastname)</td>
+
+                            <td><select name="IfRegister"><option value="true" selected="selected">Yes</option><option value="false">No</option></select></td>
+                            <td>@Html.ClassSelectList(Model.Classes)</td>
+                            <td>@Html.EnrichmentClassSelectList(Model.EnrichmentClasses)</td>
+
+                        </tr>
+                    }
+
+                </table>
+
+           
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" id="submitform" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+

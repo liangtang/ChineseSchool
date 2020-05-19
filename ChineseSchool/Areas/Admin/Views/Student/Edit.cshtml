@@ -1,0 +1,105 @@
+﻿@using ChineseSchool.Extensions
+@model ChineseSchool.Entities.Student
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $('[name="Birthday"]').addClass("datepicker");
+
+
+        $(".datepicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true
+        }).val();
+    })
+</script>
+
+
+@Html.Action("StudentNavBar", new { controller = "Student", area = "Admin", studentId = Model.StudentId, currentTab = ViewBag.currentTab })
+
+
+<div class="col-md-offset-1 col-md-9 panel-primary">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Edit Student Info</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.StudentId)
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Firstname, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Firstname)
+                    @Html.ValidationMessageFor(model => model.Firstname)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Lastname, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Lastname)
+                    @Html.ValidationMessageFor(model => model.Lastname)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MiddleInitial, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MiddleInitial)
+                    @Html.ValidationMessageFor(model => model.MiddleInitial)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Chinesename, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Chinesename)
+                    @Html.ValidationMessageFor(model => model.Chinesename)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.GenderSelectList(Model.Gender)
+                    @Html.ValidationMessageFor(model => model.Gender)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Birthday, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Birthday)
+                    @Html.ValidationMessageFor(model => model.Birthday)
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

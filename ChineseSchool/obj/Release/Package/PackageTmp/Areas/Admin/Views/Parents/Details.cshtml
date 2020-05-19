@@ -1,0 +1,148 @@
+﻿@model ChineseSchool.Areas.Admin.ParentDetailsViewModel
+@{
+    ViewBag.Title = "My Account";
+}
+<script>
+    var isSubmitted = false;
+
+    function submitForm() {
+        if (!isSubmitted) {
+            if (confirm("Are you sure you want to apply book fee charge to this account?")) {
+                isSubmitted = true;
+                $('form[name="ApplyBookCharge"]').submit();
+            }else
+            {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    $(document).ready(function () {
+        $('#ApplyBookCharge').click(submitForm);
+    }
+   )
+
+</script>
+@Html.Action("ParentsNavBar", new { controller = "Parents", area = "Admin", parentId = Model.Parent.ParentsId, currentTab = "Details" })
+<div class="col-md-offset-1 col-md-9 panel panel-primary">
+    <br />
+
+    <div class="panel-heading">Parents Info - Details &nbsp;&nbsp;&nbsp;&nbsp; <span class="text-danger">Total Amount Due: @Model.AmountDue</span></div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt class="text-success">Your Name:</dt>
+            <dd class="text-primarty">@Model.User.Firstname @Model.User.Lastname</dd>
+            <dt class="text-success">Your Username:</dt>
+            <dd class="text-primarty">@Model.User.UserName</dd>
+            <dt class="text-success">Your Email Address:</dt>
+            <dd class="text-primarty">@Model.User.Email</dd>
+
+        </dl>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt class="text-primary">Parent 1</dt>
+                <dd class="text-primary">@Model.Parent.Parent1Firstname @Model.Parent.Parent1LastName</dd>
+                <dt class="text-primary">Parent 2</dt>
+                <dd class="text-primary">@Model.Parent.Parent2Firstname @Model.Parent.Parent2Lastname</dd>
+                <dt class="text-primary">Primary Phone</dt>
+                <dd class="text-primary">@Model.Parent.PrimaryPhone</dd>
+                <dt class="text-primary">Primary Email</dt>
+                <dd class="text-primary">@Model.Parent.PrimaryEmail</dd>
+            </dl>
+        </div>
+        <div class="col-md-6 text-primary">
+            Home Address<br />
+            @Model.Parent.AddressLine1<br />
+            @(@Model.Parent.AddressLine2 == null ? Model.Parent.AddressLine2 : null)
+            @Model.Parent.City @Model.Parent.State @Model.Parent.ZipCode
+        </div>
+
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Chinese Name</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+                <th>Registered</th>
+                <th>Class</th>
+                <th>Enrichment Class</th>
+                <th></th>
+            </tr>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@(student.Firstname + " " + student.Lastname)</td>
+                    <td>@student.Chinesename</td>
+                    <td>@student.Gender</td>
+                    <td>@student.Birthday</td>
+                    <td>@(student.RegisterClass ? "YES" : "NO")</td>
+                    <td>@student.Class</td>
+                    <td>@student.EnrichmentClass</td>
+                    <td>@Html.ActionLink("Edit","Edit",new {controller="Student",Area="Admin", studentId = student.StudentId} )</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="panel-body">
+        <div class="panel-heading">All transactions</div>
+        <table class="table">
+            <tr>
+                <th>
+                   TransactionDescription
+                </th>
+
+                <th>
+                    TransactionAmount
+                </th>
+                <th>
+                    TransactionDate
+                </th>
+                <th>
+                    Active Flag
+                </th>
+
+
+
+
+
+            </tr>
+
+            @foreach (var item in Model.Transactions)
+    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionDate)
+                    </td>
+                    <td>
+                        @(item.ActiveFlg?"Yes":"No")
+                    </td>
+
+                </tr>
+    }
+            <tr>
+                <td>Total</td>
+                <td>@Model.AmountDue</td>
+                <td></td>
+            </tr>
+
+        </table>
+        <form action="/Admin/Parents/ApplyBookCharge" method="post" name="ApplyBookCharge">
+            <input type="hidden" name="id" value="@Model.Parent.ParentsId">
+
+        </form>
+
+
+    </div>
+</div>

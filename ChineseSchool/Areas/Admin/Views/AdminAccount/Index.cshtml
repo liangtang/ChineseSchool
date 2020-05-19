@@ -1,0 +1,69 @@
+﻿@using ChineseSchool.Extensions
+@using ChineseSchool.Models
+@model ChineseSchool.Areas.Admin.Models.UsersViewModel
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    $(document).ready(function () {
+        $('.deleteaccount').bind('click', function () {
+            if (!confirm("Are you sure you want to delete this user, This CANNOT be undone!")) {
+                return false;
+            }
+            else {
+                $(this).closest('form').submit();
+            }
+        })
+    })
+</script>
+<h2>All Users</h2>
+<table class="table table-striped">
+    <tr>
+
+        <th>User Name</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Status</th>
+
+        <th></th>
+    </tr>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+
+            <td>@user.UserName</td>
+            <td>@user.Firstname</td>
+            <td>@user.Lastname</td>
+            <td>
+                @if (user.EmailConfirmed)
+                {
+                    @:Confirmed
+                }
+                else
+                {
+                    @:Not Confirmed
+                }
+
+            </td>
+
+
+            <td>
+                @using (Html.BeginForm("Delete", "AdminAccount", new { id = user.Id }))
+                {
+                    @Html.AntiForgeryToken();
+                    @Html.ActionLink("Edit", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                    if (!user.EmailConfirmed)
+                    {
+                        @Html.ActionLink("Confirm", "Confirm", new { controller = "AdminAccount", area = "Admin", id = user.Id }, new { @class = "btn btn-xs btn-primary" });
+                    }
+                    <button class="btn btn-danger btn-xs deleteaccount" type="button">Delete</button>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.Paging(Model.PageInfo)

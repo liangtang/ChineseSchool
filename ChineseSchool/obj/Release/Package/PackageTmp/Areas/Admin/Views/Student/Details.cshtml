@@ -1,0 +1,84 @@
+﻿@model ChineseSchool.Areas.Admin.Models.StudentDetailViewModel
+@{
+    ViewBag.Title = "My Account";
+}
+
+@Html.Action("StudentNavBar", new { controller = "Student", area = "Admin", studentId = Model.Student.StudentId, currentTab = "Details" })
+<div class="col-md-offset-1 col-md-9 panel panel-primary">
+    <br />
+
+    <div class="panel-heading">Parents Info </div>
+   
+    <div class="panel-body">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt class="text-primary">Parent 1</dt>
+                <dd class="text-primary">@Model.Parent.Parent1Firstname @Model.Parent.Parent1LastName</dd>
+                <dt class="text-primary">Parent 2</dt>
+                <dd class="text-primary">@Model.Parent.Parent2Firstname @Model.Parent.Parent2Lastname</dd>
+                <dt class="text-primary">Primary Phone</dt>
+                <dd class="text-primary">@Model.Parent.PrimaryPhone</dd>
+                <dt class="text-primary">Primary Email</dt>
+                <dd class="text-primary">@Model.Parent.PrimaryEmail</dd>
+            </dl>
+        </div>
+        <div class="col-md-6 text-primary">
+            Home Address<br />
+            @Model.Parent.AddressLine1<br />
+            @(@Model.Parent.AddressLine2 == null ? Model.Parent.AddressLine2 : null)
+            @Model.Parent.City @Model.Parent.State @Model.Parent.ZipCode
+        </div>
+
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Chinese Name</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+      
+                <th></th>
+            </tr>
+          
+                <tr>
+                    <td>@(Model.Student.Firstname + " " + Model.Student.Lastname)</td>
+                    <td>@Model.Student.Chinesename</td>
+                    <td>@Model.Student.Gender</td>
+                    <td>@Model.Student.Birthday</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { controller = "Student", Area = "Admin", studentId = Model.Student.StudentId })</td>
+                </tr>
+            <tr>
+                <td colspan="2">Register to current semester?</td>
+                <td colspan="2">@Model.IfRegistered</td>
+            @if(Model.IfRegistered=="No")
+            {
+                <td>@Html.ActionLink("Register","ExistingRegistration",new {controller = "AdminRegister",area="Admin",email=Model.Parent.PrimaryEmail})</td>
+            }
+            else
+            {
+                <td></td>
+            }
+
+            </tr>
+            <tr >
+                <td colspan="2">Class Assigned</td>
+                <td colspan="2">@Model.ClassAssigned</td>
+                @if(Model.IfRegistered=="Yes"){
+                <td>@Html.ActionLink("Assign Class","AssignClass",new {controller="Student",area="Admin",studentId=Model.Student.StudentId})</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td colspan="2">Enrichment Class</td>
+                <td colspan="2">@Model.EnrichmentmentClass</td>
+                <td>@Html.ActionLink("Assign Enrichment Class","AssignEnrichmentClass",new {controller="Student",area="Admin",studentId=Model.Student.StudentId})</td>
+            </tr>
+          
+        </table>
+    </div>
+    
+</div>

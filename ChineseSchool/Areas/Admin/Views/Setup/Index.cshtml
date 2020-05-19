@@ -1,0 +1,117 @@
+﻿@model ChineseSchool.Areas.Admin.Models.SetupViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Settings for Current Semester</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Semester Information
+    </div>
+    <div class="panel-body">
+        <table class="table table-responsive">
+            <tr>
+                <th>Year</th>
+                <th>Season</th>
+                <th>Reg Start Date</th>
+                <th>Reg End Date</th>
+                <th>Price1</th>
+                <th>Price2</th>
+                <th>Price3</th>
+                <th>Price4</th>
+                <th>Price5</th>
+                <th>Book Charge</th>
+                <th>Reg. Fee before End Date</th>
+                <th>Reg. Fee After End Date</th>
+                <th>Volunteer Deposit</th>
+            </tr>
+            <tr>
+                <td>@Model.Semester.SemesterYear</td>
+                <td>@Model.Semester.SemesterSeason</td>
+                <td>@Model.Semester.RegisterStartDate.ToShortDateString()</td>
+                <td>@Model.Semester.RegisterEndDate.ToShortDateString()</td>
+                <td>@Model.Semester.Price1</td>
+                <td>@Model.Semester.Price2</td>
+                <td>@Model.Semester.Price3</td>
+                <td>@Model.Semester.Price4</td>
+                <td>@Model.Semester.Price5</td>
+                <td>@Model.Semester.BookCharge</td>
+                <td>@Model.Semester.RegistrationFeeBeforeEndDate</td>
+                <td>@Model.Semester.RegistrationFeeAfterEndDate</td>
+                <td>@Model.Semester.VolunteerDeposit</td>
+
+            </tr>
+        </table>
+        @Html.ActionLink("Edit", "EditSemester", new  {controller="Setup",area="Admin",semesterId = Model.Semester.SemesterID })
+    </div>
+    <br/>
+    
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Class Information
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tr>
+                <th>Class Name</th>
+                <th>Class Description</th>
+                <th></th>
+            </tr>
+            @foreach(ChineseSchool.Entities.Class c in Model.Classes)
+            {
+                <tr>
+                    <td>@c.Classname</td>
+                    <td>@c.ClassDescription</td>
+                    <td>@using (Html.BeginForm("DeleteClass", "Setup", new { area = "Admin" }, FormMethod.Post)) { 
+                            <input type="hidden" name="ClassID" value="@c.ClassId"/>
+                            @Html.ActionLink("Edit","EditClass",new {controller="Setup",area="Admin",classId=c.ClassId})  @:|
+                            @Html.ActionLink("Details", "ClassDetail", new { controller = "Setup", area="Admin", classId = c.ClassId}) @:|
+                            @Html.ActionLink("Load Image","LoadClassImage",new { controller = "Setup", area="Admin", classId = c.ClassId})
+                            
+                             <input type="submit" id="submitform" value="Delete" class="btn btn-default" />
+                        } </td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Add Class", "AddClass", new { controller = "Setup", area = "Admin" })
+    </div>
+</div> 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Enrichment Class Information
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tr>
+                <th>Class Name</th>
+               
+                <th>Price for CCT Student</th>
+                <th>Price for NON-CCT Student</th>
+                
+                <th></th>
+
+            </tr>
+            @foreach (ChineseSchool.Entities.EnrichmentClass e in Model.EnrichmentClasses)
+            {
+                <tr>
+                    <td>@e.ClassName</td>
+                    <td>@e.Price1</td>
+                    <td>@e.Price2</td>
+                    <td>
+                        @using (Html.BeginForm("DeleteEnrichmentClass", "Setup", new { area = "Admin" }, FormMethod.Post))
+                        {
+                            <input type="hidden" name="ClassID" value="@e.ClassID" />
+                            @Html.ActionLink("Edit","EditEnrichmentClass",new {controller="Setup",area="Admin",classId=e.ClassID})  
+                            <input type="submit" id="submitform" value="Delete" class="btn btn-default" />
+                        }
+                </td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Add Enrichment Class", "AddEnrichmentClass", new { controller = "Setup", area = "Admin" })
+    </div>
+</div> 
+

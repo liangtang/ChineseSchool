@@ -1,0 +1,98 @@
+﻿@model ChineseSchool.Entities.Event
+
+@{
+    ViewBag.Title = "Deatils";
+}
+
+<h2>Deatils</h2>
+
+<div class="col-md-2 panel-default">
+    <div class="panel-heading">Event Info</div>
+    <ul class="nav nav-pills nav-stacked navbar-custom">
+        
+        <li>@Html.ActionLink("Add Event", "Create", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="Edit"?"active":"")">@Html.ActionLink("Edit Event", "Edit", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddImage"?"active":"")">@Html.ActionLink("Add Image", "UploadImages", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+        <li class="@(ViewBag.currentTab=="AddVideo"?"active":"")">@Html.ActionLink("Add Video", "UploadVideo", new { controller = "Event", area = "Admin", id = Model.EventId }, new { @class = "icon-chevron-right nav-stacked-font" })</li>
+
+    </ul>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#DeleteEvent').bind('click', function () {
+            if (confirm("Are you sure you want to delete this item?")) {
+                $(this).closest('form').submit();
+            }
+            else {
+                return false;
+            }
+        })
+    })
+
+</script>
+<div class="col-md-10 panel-default">
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal ">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventName)
+        </dd>
+        <dr />
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDate)
+        </dd>
+        <dr />
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDescription)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @(Model.Active?"Active":"InActive")
+        </dd>
+    </dl>
+    <div class="col-md-12 panel panel-primary">
+        @foreach (var image in Model.Images)
+        {
+            <div class="col-md-2">
+                <a href="../../../content/eventimages/@image.ImagePath" target="_blank"><img src="../../../content/eventimages/@image.ThumbNailPath" class="img-responsive" /></a>
+            </div>
+        }
+       
+    </div>
+    <div class="col-md-12 panel panel-primary">
+        @foreach (var video in Model.Videos)
+        {
+            <div class="col-md-6">
+                <p><iframe width="640" height="480" src="@video.VideoLink" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>
+            </div>
+        }
+
+    </div>
+    <div>
+        @using (Html.BeginForm("Delete", "Event", FormMethod.Post))
+        {
+            <input type="hidden" name="id" value="@Model.EventId" />
+            @Html.ActionLink("Edit", "Edit", new { id = Model.EventId }) @:|
+            @Html.ActionLink("Back to List", "Index") @:|
+            <button class="btn-danger" type="button" id="DeleteEvent">Delete</button>
+        }
+    </div>
+</div>
+
